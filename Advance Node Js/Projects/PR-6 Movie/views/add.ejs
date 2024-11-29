@@ -1,0 +1,142 @@
+
+<html>
+
+<head>
+  <title>MOVIE VERSE</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+</head>
+
+<style>
+
+body {
+  font-family: "Rubik", sans-serif;
+  text-align: center;
+  background-color: #000000;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+img {
+  height: 300px;
+  width: 300px;
+  border-radius: 5px;
+}
+
+img:hover {
+  border-top: 2px solid #d90429;
+  border-right: 2px solid #d90429;
+}
+
+h1,
+h3,
+p {
+  color: #edf2f4;
+}
+
+a {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 230px;
+  color: red;
+  text-decoration: none;
+}
+
+a:hover{
+  color: rgb(204, 65, 65);
+}
+
+input {
+  background-color: #8d99ae;
+  border: none;
+  padding: 14px;
+  color: #edf2f4;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 16px;
+  font-family: "Rubik", sans-serif;
+  margin-bottom: 6px;
+  width: 100%;
+}
+
+input::placeholder {
+  color: #edf2f4;
+  opacity: 0.5;
+}
+
+input:focus {
+  border-top: 2px solid #edf2f4;
+  border-right: 2px solid #edf2f4;
+  outline: none;
+}
+
+button {
+  margin-top: 10px;
+  border: none;
+  padding: 14px;
+  cursor: pointer;
+  background-color: #d90429;
+  color: #edf2f4;
+ 
+  font-weight: 500;
+  font-size: 16px;
+  font-family: "Rubik", sans-serif;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 400px;
+}
+
+i {
+  color: #d90429;
+}
+
+input:required:valid {
+  border-color: green;
+}
+
+input:invalid {
+  border-color: #d90429;
+}
+
+input:required:focus:valid {
+  background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg")
+    no-repeat 95% 50% #8d99ae;
+  background-size: 25px;
+}
+
+input:focus:invalid {
+  background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg")
+    no-repeat 95% 50% #8d99ae;
+  background-size: 25px;
+}
+
+.form-btns{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+</style>
+
+<body>
+
+  <h1>
+    Upload Movie
+  </h1>
+  <div class="form">
+    <form action="/insert" method="post" enctype="multipart/form-data">
+
+      <input type="text" placeholder="Movie name"  name="name" />
+      <input type="text" placeholder="Movie description" name="desc" />
+      <input type="text" placeholder="Movie price"  name="price" />
+      <input type="file" placeholder="Movie Image "  name="image" />
+    <div class="form-btns">
+      <button id="add-random" type="submit" >submit</button>
+      <a href="/views" class="" id="add-movie" type="submit" >View Uploaded Movie</a>
+    </div>
+ 
+</form>
+</div>
+</body>
+
+</html>
