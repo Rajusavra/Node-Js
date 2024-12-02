@@ -47,5 +47,4 @@ passport.setUser = (req, res, next) => {
     return next();
 }
 
-
 module.exports = passport;

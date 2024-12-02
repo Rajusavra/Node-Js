@@ -4,9 +4,13 @@ let port = 8000;
 
 let app = express();
 
-const session = require('express-session');
+const db = require('./config/db');
+
+app.set("view engine", "ejs");
+
 const passport = require('passport');
 const passportlocal = require('./config/passportlocal');
+const session = require('express-session');
 
 app.use(session({
     secret: 'sparky',
@@ -23,16 +27,9 @@ app.use(passport.setUser);
 
 const path = require('path');
 
-
-const db = require('./config/mongoose');
-
-app.set("view engine", "ejs");
-
 app.use(express.urlencoded());
 
 app.use('/',require('./routes/indexRoute'));
-
-app.set('views',path.join(__dirname,'views'));
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 

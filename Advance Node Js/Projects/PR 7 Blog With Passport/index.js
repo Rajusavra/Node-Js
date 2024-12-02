@@ -23,7 +23,6 @@ app.use(passport.setUser);
 
 const path = require('path');
 
-
 const db = require('./config/mongoose');
 
 app.set("view engine", "ejs");

@@ -13,7 +13,7 @@ const userSchema=mongoose.Schema({
     password:{
         type:String,
         require:true
-    },
+    }
 })
 const users=mongoose.model('user',userSchema)
 module.exports=users;
