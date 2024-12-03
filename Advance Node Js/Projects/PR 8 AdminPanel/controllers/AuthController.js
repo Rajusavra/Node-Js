@@ -59,6 +59,12 @@ const profile = (req,res) => {
   res.render('profile');
 }
 
+const editProfile = (req,res) => {
+  res.render('editProfile');
+}
+
+
+
 module.exports = {
   signInPage,
   checkLogin,
@@ -67,4 +73,5 @@ module.exports = {
   registerPage,
   logout,
   profile,
+  editProfile
 };

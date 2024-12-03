@@ -1,9 +1,9 @@
 const userModel = require("../models/UserModel");
 
-const postEmail = async (req,res) => {
+const verifyEmail = async (req,res) => {
     
 }
 
 module.exports = {
-    postEmail,
+    verifyEmail,
 }

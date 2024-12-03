@@ -2,8 +2,8 @@ const express = require('express');
 
 const routes = express.Router();
 
-const { postEmail } = require('../controllers/ForgotController.js');
+const { verifyEmail } = require('../controllers/ForgotController.js');
 
-routes.post('/postEmail', postEmail)
+routes.post('/verifyEmail', verifyEmail)
 
 module.exports = routes;
