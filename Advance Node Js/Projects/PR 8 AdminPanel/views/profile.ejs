@@ -69,7 +69,7 @@
         <ul class="navbar-nav">
           <li class="nav-item fw-semibold d-none d-lg-block ms-0">
             <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">
-                <%= locals.users.name %>
+                <%= locals?.users?.name %>
               </span></h1>
             <h3 class="welcome-sub-text">Your performance summary this week </h3>
           </li>
@@ -218,9 +218,6 @@
                   <%= locals.users.email %>
                 </p>
               </div>
-              <a class="dropdown-item" href="/profile"><i
-                  class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span
-                  class="badge badge-pill badge-danger">1</span></a>
               <a class="dropdown-item" href="/logout"><i
                   class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
             </div>
@@ -300,9 +297,9 @@
               <div aria-labelledby="UserDropdown" data-bs-popper="static">
                 <div class="dropdown-header text-center">
                   <img class="img-md rounded-circle" src="/assets/images/faces/face8.jpg" alt="Profile image">
-                  <p class="mb-1 mt-3 fw-semibold"><%= locals.users.name %></p>
-                  <p class="fw-light text-muted mb-3"><%= locals.users.email %></p>
-                  <a class="btn btn-primary p-3 py-2" href="/editProfile"> EDIT </a>
+                  <p class="mb-1 mt-3 fw-semibold"><%= locals?.users?.name %></p>
+                  <p class="fw-light text-muted mb-3"><%= locals?.users?.email %></p>
+                  <a class="btn btn-primary p-3 py-2" href="/editprofile"> EDIT </a>
                 </div>
               </div>
             </div>

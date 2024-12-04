@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "debuger": "^0.0.0",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
@@ -8,6 +9,7 @@
     "mongodb": "^6.11.0",
     "mongoose": "^8.8.2",
     "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.16",
     "nodemon": "^3.1.7",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0"

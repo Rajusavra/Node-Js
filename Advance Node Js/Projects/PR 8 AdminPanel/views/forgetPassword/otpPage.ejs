@@ -32,28 +32,14 @@
                 <div class="brand-logo">
                   <img src="/assets/images/logo.svg" alt="logo">
                 </div>
-                <h4>Hello! let's get started</h4>
-                <h6 class="fw-light">Sign in to continue.</h6>
-                <form class="pt-3" method="post" action="/checkLogin">
+                <h4>Verify Your OTP</h4>
+                <h6 class="fw-light">Verify your otp to continue.</h6>
+                <form class="pt-3" action="/forget/otpPost" method="post">
                   <div class="form-group">
-                    <input type="email" name="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                    <input type="password" name="otp" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter otp">
                   </div>
                   <div class="mt-3 d-grid gap-2">
-                    <button class="btn btn-block btn-primary btn-lg fw-medium auth-form-btn" type="submit">SIGN IN</button>
-                  </div>
-                  <div class="my-2 d-flex justify-content-between align-items-center">
-                    <div class="form-check">
-                      <label class="form-check-label text-muted">
-                        <input type="checkbox" class="form-check-input"> Keep me signed in </label>
-                    </div>
-                    <a href="/forget/verifyEmail" class="auth-link text-primary">Forgot password?</a>
-                  </div>
-                  <div class="mb-2 d-grid gap-2">
-                  </div>
-                  <div class="text-center mt-4 fw-light"> Don't have an account? <a href="/register" class="text-primary">Register</a>
+                    <button class="btn btn-block btn-primary btn-lg fw-medium auth-form-btn" type="submit">Verify Otp</button>
                   </div>
                 </form>
               </div>

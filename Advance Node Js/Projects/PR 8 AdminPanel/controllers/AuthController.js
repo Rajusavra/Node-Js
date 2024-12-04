@@ -1,16 +1,26 @@
 const userModel = require("../models/UserModel");
+
+// ========= Sign In ========= //
+
 const signInPage = (req, res) => {
   if (res.locals.users) {
     return res.redirect("dashboard");
   }
   return res.render("signIn");
 };
+
 const checkLogin = (req, res) => {
   return res.redirect("dashboard");
 };
+
+// ========= DashBoard Page ========= //
+
 const dashboard = (req, res) => {
   return res.render("dashboard");
 };
+
+// ========= Register UserInfo ========= //
+
 const registerPage = (req, res) => {
   try {
     if (req.isAuthenticated()) {
@@ -45,6 +55,9 @@ const registerUser = async (req, res) => {
     return false;
   }
 };
+
+// ========= Logout ========= //
+
 const logout = (req, res) => {
   req.logout((err) => {
     if (err) {
@@ -55,14 +68,50 @@ const logout = (req, res) => {
   });
 };
 
+// ========= Profile ========= //
+
 const profile = (req,res) => {
   res.render('profile');
 }
 
-const editProfile = (req,res) => {
+const editProfilePage = (req,res) => {
   res.render('editProfile');
 }
 
+
+const updateProfile = async(req,res) =>{
+  try {
+      const {name,editpassword,editemail} =req.body
+      await userModel.findOneAndUpdate({email:editemail},{
+          name:name,
+          password : editpassword,
+          
+      })
+      return res.redirect('/profile')
+  } catch (err) {
+      console.log(err);
+      return false
+  }
+}
+
+
+// ========= Change Password ========= //
+
+const changePass = (req, res) => {
+  return res.render("changePass");
+};
+
+const setNewPass = async (req, res) => {
+  try {
+    const { editemail, confirmpass } = req.body;
+    await userModel.findOneAndUpdate({email:editemail},{
+      newpass : confirmpass, 
+  })
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
 
 
 module.exports = {
@@ -72,6 +121,9 @@ module.exports = {
   registerUser,
   registerPage,
   logout,
+  changePass,
+  setNewPass,
   profile,
-  editProfile
+  editProfilePage,
+  updateProfile
 };

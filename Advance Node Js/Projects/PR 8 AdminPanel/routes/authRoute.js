@@ -1,6 +1,6 @@
 const express =  require('express');
 
-const { signInPage, checkLogin, dashboard, registerPage, registerUser, logout, profile } = require('../controllers/AuthController');
+const { signInPage, checkLogin, dashboard, registerPage, registerUser, logout, changePass, setNewPass, profile, editProfilePage, updateProfile, } = require('../controllers/AuthController');
 
 const route = express.Router();
 
@@ -15,6 +15,11 @@ route.get('/register',registerPage);
 route.post('/registerUser',registerUser);
 route.get('/logout',logout);
 
-route.get('/profile',profile)
+route.get('/changepass',changePass)
+route.post('/setNewPass',setNewPass)
+
+route.get('/profile',passport.checkUser,profile)
+route.get('/editprofile',passport.checkUser,editProfilePage)
+route.post('/updateprofile',updateProfile)
 
 module.exports = route;
