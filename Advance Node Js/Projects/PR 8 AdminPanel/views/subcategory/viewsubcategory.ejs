@@ -19,21 +19,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% single.map((cat,i)=> { %>
+                                        <% single.map((subcat,i)=> { %>
 
                                             <tr>
                                                 <td>
                                                     <%= ++i %>
                                                 </td>
                                                 <td>
-                                                    <%= cat.category %>
+                                                    <%=subcat.categoryid.category%>
                                                 </td>
                                                 <td>
-                                                    <a href="/category/deleteCategory?id=<%=cat.id%>"
+                                                    <%=subcat.subcategory%>
+                                                </td>
+                                                <td>
+                                                    <a href="/subcategory/deleteSubCategory?id=<%=subcat.id%>"
                                                         class="btn btn-danger py-2">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
-                                                    <a href="/category/editCategory?id=<%=cat.id%>"
+                                                    <a href="/subcategory/editSubCategory?id=<%=subcat.id%>"
                                                         class="btn btn-primary py-1 ms-2 "
                                                         style="font-size: 22px !important;">
                                                         <i class="fa fa-edit"></i>
@@ -41,13 +44,13 @@
                                                 </td>
 
                                                 <td>
-                                                    <% if(cat.status=="active" ){%>
-                                                        <a href="/category/changeStatus?id=<%= cat.id%>&status=<%= cat.status %>"
-                                                            class="form-check form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"> </a>
-                                                        <% }else{%>
-                                                            <a href="/category/changeStatus?id=<%= cat.id%>&status=<%= cat.status %>"
-                                                                class="form-check form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked=""> </a>
+                                                    <% if(subcat.status=="active" ){%>
+                                                        <a href="/subcategory/changstatus?id=<%=subcat.id%>&status=<%= subcat.status%>"
+                                                            class="btn btn-success">Active</a>
 
+                                                        <% }else{ %>
+                                                            <a href="/subcategory/changstatus?id=<%=subcat.id%>&status=<%= subcat.status%>"
+                                                                class="btn btn-warning">Deactive</a>
                                                             <% } %>
                                                 </td>
                                             </tr>

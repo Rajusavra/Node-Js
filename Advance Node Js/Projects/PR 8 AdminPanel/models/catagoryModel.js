@@ -1,9 +1,13 @@
 const mongoose=require('mongoose')
 
 const categorySchema=mongoose.Schema({
-    name:{
+    category:{
         type:String,
         require:true
+    },
+    status:{
+        type:String,
+       default:'deactive'
     }
 })
 const category=mongoose.model('category',categorySchema)
