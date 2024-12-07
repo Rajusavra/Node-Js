@@ -15,11 +15,13 @@
                                         <tr>
                                             <th> Id </th>
                                             <th> Category Type </th>
+                                            <th> SubCategory </th>
                                             <th> Action </th>
+                                            <th> Status </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% single.map((subcat,i)=> { %>
+                                        <% subcategory.map((subcat,i)=> { %>
 
                                             <tr>
                                                 <td>
@@ -42,16 +44,11 @@
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                 </td>
-
                                                 <td>
-                                                    <% if(subcat.status=="active" ){%>
-                                                        <a href="/subcategory/changstatus?id=<%=subcat.id%>&status=<%= subcat.status%>"
-                                                            class="btn btn-success">Active</a>
-
-                                                        <% }else{ %>
-                                                            <a href="/subcategory/changstatus?id=<%=subcat.id%>&status=<%= subcat.status%>"
-                                                                class="btn btn-warning">Deactive</a>
-                                                            <% } %>
+                                                    <a href="/subcategory/changestatus?status=<%= subcat.status %>&id=<%= subcat.id %>"
+                                                        class="<% if(subcat.status == `active`) { %> btn btn-info py-2 px-3 <% } else { %> btn btn-warning py-2 px-3 <% } %>">
+                                                            <%= subcat.status %>
+                                                    </a>
                                                 </td>
                                             </tr>
 

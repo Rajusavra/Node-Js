@@ -34,9 +34,8 @@ const addSubCategoryFieldsPage = async(req, res)=>{
 const viewSubCategory = async (req, res)=>{
     try {
         const subcategory = await subcategoryModel.find({}).populate('categoryid')
-        console.log(subcategory);
         return res.render('subcategory/viewsubcategory',{
-            subcategory
+          subcategory: subcategory
         })
         
     } catch (error) {

@@ -16,6 +16,7 @@
                                             <th> Id </th>
                                             <th> Category Type </th>
                                             <th> Action </th>
+                                            <th> Status </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -39,16 +40,11 @@
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                 </td>
-
                                                 <td>
-                                                    <% if(cat.status=="active" ){%>
-                                                        <a href="/category/changeStatus?id=<%= cat.id%>&status=<%= cat.status %>"
-                                                            class="form-check form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"> </a>
-                                                        <% }else{%>
-                                                            <a href="/category/changeStatus?id=<%= cat.id%>&status=<%= cat.status %>"
-                                                                class="form-check form-switch"> <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked=""> </a>
-
-                                                            <% } %>
+                                                    <a href="/category/changeStatus?id=<%= cat.id %>&status=<%= cat.status %>" 
+                                                        class="<% if(cat.status == `active`) { %> btn btn-info py-2 px-3 <% } else { %> btn btn-warning py-2 px-3 <% } %>">
+                                                        <%= cat.status %>
+                                                    </a>
                                                 </td>
                                             </tr>
 
