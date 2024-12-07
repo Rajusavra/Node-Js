@@ -3,6 +3,8 @@ const express=require('express')
 
 const routes=express.Router()
 
+const path=require('path')
+
 const { addpage, viewpage, adddata, deletedata, edit, up, update } = require('../controllers/controllers')
 
 const multer=require('multer')

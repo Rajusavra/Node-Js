@@ -1,0 +1,17 @@
+category and SubcategoryList for(Select Box) =  join  =  populate:
+
+ExsubcategoryRoute:
+ExsubcategoryController:
+Exsubcategorypages : -- To Store ejs files -- :
+
+Categories :{
+	
+	Category Name 
+
+}
+
+Sub categories : {
+
+	Sub CategoryName
+
+}
