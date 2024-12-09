@@ -15,7 +15,7 @@ route.get('/register',registerPage);
 route.post('/registerUser',registerUser);
 route.get('/logout',logout);
 
-route.get('/changepass',changePass)
+route.get('/changepass', passport.checkUser ,changePass)
 route.post('/setNewPass',setNewPass)
 
 route.get('/profile',passport.checkUser,profile)

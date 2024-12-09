@@ -10,4 +10,6 @@ routes.use('/category',require('../routes/categoryRoute'));
 
 routes.use('/subcategory',require('../routes/subCategoryRoute'));
 
+routes.use('/exsubcategory',require('../routes/exsubcategoryRoute'));
+
 module.exports = routes;

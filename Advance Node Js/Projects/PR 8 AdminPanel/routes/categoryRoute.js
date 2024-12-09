@@ -12,7 +12,7 @@ routes.post('/addcategoryfields',addcategoryfieldsPage);
 routes.use('/viewcategory',passport.checkUser,viewCategoryPage);
 
 routes.get('/deleteCategory', deleteCategory);
-routes.get('/editCategory', editCategory);
+routes.get('/editCategory', passport.checkUser ,editCategory);
 routes.post('/updateCategory', updateCategory);
 
 routes.get('/changeStatus',changeStatus)

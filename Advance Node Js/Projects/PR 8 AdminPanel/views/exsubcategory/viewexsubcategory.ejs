@@ -6,8 +6,8 @@
                 <div class="col-lg-8 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Catogery Table</h4>
-                            <p class="card-description"> View All <code>Categories</code>
+                            <h4 class="card-title">Extra SubCatogery Table</h4>
+                            <p class="card-description"> View All <code>Extra SubCategories</code>
                             </p>
                             <div class="table-responsive">
                                 <table class="table table-striped">
@@ -15,39 +15,38 @@
                                         <tr>
                                             <th> Id </th>
                                             <th> Category Type </th>
+                                            <th> SubCategory </th>
+                                            <th> ExSubCategory </th>
                                             <th> Action </th>
-                                            <th> Status </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% single.map((cat,i)=> { %>
-
+                                        <% exsubcategory.map((exsub,i)=>{ %>
                                             <tr>
-                                                <td>
+                                                <th scope="row">
                                                     <%= ++i %>
-                                                </td>
+                                                </th>
                                                 <td class="text-primary">
-                                                    <%= cat.category %>
+                                                    <%= exsub?.categoryid?.category %>
+                                                </td>
+                                                <td class="text-info">
+                                                    <%= exsub?.subcategoryid?.subcategory %>
+                                                </td>
+                                                <td class="text-danger">
+                                                    <%= exsub?.exsubcategory %>
                                                 </td>
                                                 <td>
-                                                    <a href="/category/deleteCategory?id=<%=cat.id%>"
+                                                    <a href="/exsubcategory/deleteexsubcategory?id=<%=exsub.id%>"
                                                         class="btn btn-danger py-2">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
-                                                    <a href="/category/editCategory?id=<%=cat.id%>"
+                                                    <a href="/exsubcategory/editexsubcategory?id=<%=exsub.id%>"
                                                         class="btn btn-primary py-1 ms-2 "
                                                         style="font-size: 22px !important;">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                 </td>
-                                                <td>
-                                                    <a href="/category/changeStatus?id=<%= cat.id %>&status=<%= cat.status %>" 
-                                                        class="<% if(cat.status == `active`) { %> btn btn-info py-2 px-3 <% } else { %> btn btn-warning py-2 px-3 <% } %>">
-                                                        <%= cat.status %>
-                                                    </a>
-                                                </td>
                                             </tr>
-
                                             <% }) %>
                                     </tbody>
                                 </table>

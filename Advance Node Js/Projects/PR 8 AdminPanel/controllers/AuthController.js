@@ -84,8 +84,7 @@ const updateProfile = async(req,res) =>{
       const {name,editpassword,editemail} =req.body
       await userModel.findOneAndUpdate({email:editemail},{
           name:name,
-          password : editpassword,
-          
+          password : editpassword,        
       })
       return res.redirect('/profile')
   } catch (err) {
@@ -103,10 +102,15 @@ const changePass = (req, res) => {
 
 const setNewPass = async (req, res) => {
   try {
-    const { editemail, confirmpass } = req.body;
+    const { editpassword, conpassword, editemail } = req.body;
     await userModel.findOneAndUpdate({email:editemail},{
-      newpass : confirmpass, 
-  })
+      password : editpassword,
+    })
+    if (editpassword == conpassword) {
+      return res.redirect('/dashboard')
+    } else {
+      console.log('Make sure new and confirm pass are same');
+    }
   } catch (err) {
     console.log(err);
     return false;
