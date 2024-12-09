@@ -1,0 +1,47 @@
+<%- include('../header') %>
+    <!-- partial -->
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-6 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Extra SubCatogary form</h4>
+                            <p class="card-description"> Add ExtraSubcategory form layout </p>
+                            <form class="forms-sample" method="post" action="/exsubcategory/add">
+                                <div class="form-group">
+                                    <label for="exampleInputUsername1">Category Name</label>
+                                    <select name="category" class="form-select">
+                                        <option value="">-----select-option------</option>
+                                        <% category.map((cat)=>{ %>
+                                            <option class="text-dark" value="<%= cat._id %>">
+                                                <%= cat.category %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputUsername1">SubCategory Name</label>
+                                    <select name="subcategory" class="form-select">
+                                        <option value="">---select subcategory---</option>
+                                        <% subcategory.map((val)=>{ %>
+                                            <option value="<%= val._id %>">
+                                                <%= val.subcategory %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputUsername1">SubCategory Name</label>
+                                    <input type="text" name="exsubcategory" class="form-control"
+                                        id="exampleInputUsername1" placeholder="Add category">
+                                </div>
+                                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%- include('../footer') %>

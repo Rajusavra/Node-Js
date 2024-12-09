@@ -4,17 +4,20 @@ const subcategoryModel = require("../models/subcategoryModels");
 
 const exsubcategoryModel = require("../models/exsubcategoryModel");
 
-const viewExSubCategory = async (req,res) => {
-    try {
-        let exsubcategory = await exsubcategoryModel.find({ status: 'active' }).populate('categoryid').populate('subcategoryid');
-        return res.render('exsubcategory/viewexsubcategory', {
-            exsubcategory: exsubcategory
-        })
-    } catch (err) {
-        console.log(err);
-        return false
-    }
-}
+const viewExSubCategory = async (req, res) => {
+  try {
+    let exsubcategory = await exsubcategoryModel
+      .find({ status: "active" })
+      .populate("categoryid")
+      .populate("subcategoryid");
+    return res.render("exsubcategory/viewexsubcategory", {
+      exsubcategory: exsubcategory,
+    });
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
 
 const addExSubCategoryPage = async (req, res) => {
   try {
@@ -38,7 +41,7 @@ const addExSubCategoryData = async (req, res) => {
       subcategoryid: subcategory,
       exsubcategory: exsubcategory,
     });
-    return res.redirect("/exsubcategory/viewexsubcategory"); 
+    return res.redirect("/exsubcategory/viewexsubcategory");
   } catch (err) {
     console.log(err);
     return false;
@@ -47,18 +50,40 @@ const addExSubCategoryData = async (req, res) => {
 
 const deleteExSubCategory = async (req, res) => {
   try {
-      const id = req.query.id;
-      await exsubcategoryModel.findByIdAndDelete(id);
-      return res.redirect('/exsubcategory/viewexsubcategory');
+    const id = req.query.id;
+    await exsubcategoryModel.findByIdAndDelete(id);
+    return res.redirect("/exsubcategory/viewexsubcategory");
   } catch (err) {
-      console.log(err);
-      return false;
+    console.log(err);
+    return false;
   }
-}
+};
+
+const editExSubCategory = async (req, res) => {
+  try {
+    const id = req.query.id;
+    let category = await categoryModel.find({ status: "active" });
+    let subcategory = await subcategoryModel.find({ status: "active" });
+    // const exsubcategory = await exsubcategoryModel.findById(id).populate("categoryid");
+    let exsubcategory = await exsubcategoryModel
+    .find({ status: "active" })
+    .populate("categoryid")
+    .populate("subcategoryid");
+    return res.render("exsubcategory/editsubcategory", {
+      category: category,
+      subcategory: subcategory,
+      exsubcategory: exsubcategory
+    });
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
 
 module.exports = {
   addExSubCategoryPage,
   addExSubCategoryData,
   viewExSubCategory,
   deleteExSubCategory,
+  editExSubCategory,
 };
