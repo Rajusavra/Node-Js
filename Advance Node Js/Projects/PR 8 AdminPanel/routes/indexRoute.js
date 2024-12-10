@@ -12,4 +12,6 @@ routes.use('/subcategory',require('../routes/subCategoryRoute'));
 
 routes.use('/exsubcategory',require('../routes/exsubcategoryRoute'));
 
+routes.use('/product',require('../routes/productRoute'));
+
 module.exports = routes;
