@@ -6,10 +6,7 @@ const exsubcategoryModel = require("../models/exsubcategoryModel");
 
 const viewExSubCategory = async (req, res) => {
   try {
-    let exsubcategory = await exsubcategoryModel
-      .find({ status: "active" })
-      .populate("categoryid")
-      .populate("subcategoryid");
+    let exsubcategory = await exsubcategoryModel.find({}).populate('categoryid').populate('subcategoryid')
     return res.render("exsubcategory/viewexsubcategory", {
       exsubcategory: exsubcategory,
     });
@@ -62,18 +59,76 @@ const deleteExSubCategory = async (req, res) => {
 const editExSubCategory = async (req, res) => {
   try {
     const id = req.query.id;
-    let category = await categoryModel.find({ status: "active" });
-    let subcategory = await subcategoryModel.find({ status: "active" });
-    // const exsubcategory = await exsubcategoryModel.findById(id).populate("categoryid");
-    let exsubcategory = await exsubcategoryModel
-    .find({ status: "active" })
-    .populate("categoryid")
-    .populate("subcategoryid");
-    return res.render("exsubcategory/editsubcategory", {
+
+    const category = await categoryModel.find({});
+    const subcategory = await subcategoryModel.find({}).populate("categoryid");
+    const exsubcategory = await exsubcategoryModel
+      .findById(id)
+      .populate("categoryid")
+      .populate("subcategoryid");
+
+    return res.render("exsubcategory/editexsubcategory", {
       category: category,
       subcategory: subcategory,
-      exsubcategory: exsubcategory
+      exsubcategory: exsubcategory,
     });
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+const updateExSubCategory = async (req, res) => {
+  try {
+    const { editid, category, subcategory, exsubcategory } = req.body;
+    await exsubcategoryModel.findByIdAndUpdate(editid, {
+      categoryid: category,
+      subcategoryid: subcategory,
+      exsubcategory: exsubcategory,
+    });
+    return res.redirect("/exsubcategory/viewexsubcategory");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const getCategory = async (req, res) => {
+  try {
+    let id = req.query.id;
+    if (id) {
+      let categoryRecord = await subcategoryModel.find({ categoryid: id });
+      return res.status(200).send({
+        status: true,
+        message: "Record fetched",
+        categorydata: categoryRecord,
+      });
+    } else {
+      return res.status(200).send({
+        status: true,
+        message: "No category ID provided",
+        categorydata: [],
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send({
+      status: false,
+      message: "Server error",
+    });
+  }
+};
+
+const changeStatus = async (req, res) => {
+  try {
+    const id = req.query.id;
+    const st = req.query.status;
+    if (st == "active") {
+      await exsubcategoryModel.findByIdAndUpdate(id, { status: "deactive" });
+      return res.redirect("/exsubcategory/viewexsubcategory");
+    } else {
+      await exsubcategoryModel.findByIdAndUpdate(id, { status: "active" });
+      return res.redirect("/exsubcategory/viewexsubcategory");
+    }
   } catch (err) {
     console.log(err);
     return false;
@@ -86,4 +141,7 @@ module.exports = {
   viewExSubCategory,
   deleteExSubCategory,
   editExSubCategory,
+  updateExSubCategory,
+  getCategory,
+  changeStatus
 };

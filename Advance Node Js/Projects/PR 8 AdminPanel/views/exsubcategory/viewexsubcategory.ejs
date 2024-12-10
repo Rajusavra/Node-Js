@@ -46,6 +46,12 @@
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                 </td>
+                                                <td>
+                                                    <a href="/exsubcategory/changestatus?id=<%= exsub.id %>&status=<%= exsub.status %>" 
+                                                        class="<% if(exsub.status == `active`) { %> btn btn-info py-2 px-3 <% } else { %> btn btn-warning py-2 px-3 <% } %>">
+                                                        <%= exsub.status %>
+                                                    </a>
+                                                </td>
                                             </tr>
                                             <% }) %>
                                     </tbody>

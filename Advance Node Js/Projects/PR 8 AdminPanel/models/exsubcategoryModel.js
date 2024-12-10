@@ -15,7 +15,7 @@ const exsubcategorySchema = mongoose.Schema({
     },
     status: {
         type: String,
-        default: 'active'
+        default: 'deactive'
     }
 })
 const exsubcategory = mongoose.model('exsubcategory', exsubcategorySchema);

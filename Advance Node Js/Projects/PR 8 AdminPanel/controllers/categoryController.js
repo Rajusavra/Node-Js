@@ -55,9 +55,9 @@ const editCategory = async (req, res) => {
 
 const updateCategory = async (req, res) => {
   try {
-    const {category,editid} = req.body;
-     await categoryModel.findByIdAndUpdate(editid,{
-        category
+    const { category, editid } = req.body;
+    await categoryModel.findByIdAndUpdate(editid, {
+      category,
     });
     return res.redirect("/category/viewcategory");
   } catch (err) {
@@ -66,31 +66,26 @@ const updateCategory = async (req, res) => {
   }
 };
 
-const changeStatus = async (req,res)=>{
+const changeStatus = async (req, res) => {
+  try {
+    const id = req.query.id;
+    const st = req.query.status;
 
-    try {
-        
-        const id =req.query.id;
-        const st=req.query.status;
-        
-        if (st=="active") {
-            
-            await categoryModel.findByIdAndUpdate(id,{
-                status:"deactive"
-            })
-            return res.redirect("/category/viewcategory");
-        } else {
-            await categoryModel.findByIdAndUpdate(id,{
-                status:"active"
-            })
-            return res.redirect("/category/viewcategory");
-        }
-    } catch (error) {
-        console.log(error);
-        
+    if (st == "active") {
+      await categoryModel.findByIdAndUpdate(id, {
+        status: "deactive",
+      });
+      return res.redirect("/category/viewcategory");
+    } else {
+      await categoryModel.findByIdAndUpdate(id, {
+        status: "active",
+      });
+      return res.redirect("/category/viewcategory");
     }
-
-}
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 module.exports = {
   addCategory,
@@ -99,5 +94,5 @@ module.exports = {
   deleteCategory,
   editCategory,
   updateCategory,
-  changeStatus
+  changeStatus,
 };

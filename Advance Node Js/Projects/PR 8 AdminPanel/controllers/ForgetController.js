@@ -10,7 +10,6 @@ const email = async (req, res) => {
     let email = req.body.usersemail;
     const user = await userModel.findOne({ email: email });
     if (!user) {
-      console.log("user is not found");
       return res.redirect("/");
     }
 
@@ -59,7 +58,6 @@ const otpPost = (req, res) => {
   if (otp == userotp) {
     return res.redirect("/forget/newPassPage");
   } else {
-    console.log("OTP is not vaild");
     return false;
   }
 };
@@ -79,7 +77,6 @@ const newPassword = async (req, res) => {
     await userModel.findOneAndUpdate({ email: usereamil }, {
       password: newpass
     })
-    console.log('Password Changed');
     
     return res.redirect('/')
   } else {

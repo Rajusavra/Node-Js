@@ -8,13 +8,14 @@
                         <div class="card-body">
                             <h4 class="card-title">Extra SubCatogary form</h4>
                             <p class="card-description"> Add ExtraSubcategory form layout </p>
-                            <form class="forms-sample" method="post" action="/exsubcategory/add">
+                            <form class="forms-sample" method="post" action="/exsubcategory/update">
+                                <input type="hidden" value="<%= exsubcategory.id %>" name="editid">
                                 <div class="form-group">
                                     <label for="exampleInputUsername1">Category Name</label>
-                                    <select name="category" class="form-select">
+                                    <select name="category" onchange="exSubCategoryRecord()" id="category" class="form-select">
                                         <option value="">-----select-option------</option>
                                         <% category.map((cat)=>{ %>
-                                            <option class="text-dark" value="<%= cat._id %>">
+                                            <option value="<%= cat._id %>" <% if(cat?.category== exsubcategory?.categoryid?.category){%> selected<% }%>>
                                                 <%= cat.category %>
                                             </option>
                                             <% }) %>
@@ -22,10 +23,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputUsername1">SubCategory Name</label>
-                                    <select name="subcategory" class="form-select">
+                                    <select name="subcategory" id="subcategory" class="form-select">
                                         <option value="">---select subcategory---</option>
                                         <% subcategory.map((val)=>{ %>
-                                            <option value="<%= val._id %>">
+                                            <option value="<%= val._id %>" <% if(val?.subcategory== exsubcategory?.subcategoryid?.subcategory){%> selected<% }%>>
                                                 <%= val.subcategory %>
                                             </option>
                                             <% }) %>
@@ -34,7 +35,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputUsername1">SubCategory Name</label>
                                     <input type="text" name="exsubcategory" class="form-control"
-                                        id="exampleInputUsername1" placeholder="Add category">
+                                        id="exampleInputUsername1" value="<%= exsubcategory.exsubcategory %>" placeholder="Add category">
                                 </div>
                                 <button type="submit" class="btn btn-primary me-2">Submit</button>
                             </form>
@@ -43,5 +44,34 @@
                 </div>
             </div>
         </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            const exSubCategoryRecord = () => {
+                let category = document.getElementById('category').value;
+                $.ajax({
+                    type: 'GET',
+                    url: `/exsubcategory/getcategory?id=${category}`,
+                    success: function (res) {
+                        let tbl = "";
+                        if (res.status && res.categorydata.length > 0) {
+                            res.categorydata.map((val) => {
+                                tbl += `
+                                <option value="${val._id}">
+                                  ${val.subcategory}
+                                </option>`;
+                            });
+                        } else {
+                            tbl += `<option value="">---select subcategory---</option>`;
+                        }
+                        document.getElementById('subcategory').innerHTML = tbl;
+                    },
+                    error: function (xhr) {
+                        console.error(xhr);
+                        alert("An error occurred while fetching subcategories.");
+                    },
+                });
+            };
+        </script>
 
         <%- include('../footer') %>

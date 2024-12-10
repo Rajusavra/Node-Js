@@ -14,7 +14,5 @@ routes.get('/deletesubcategory',deleteSubCategory);
 routes.get('/editsubcategory',editSubCategory);
 routes.post('/updatesubcategory',updateSubCategory);
 
-
-
 routes.get('/changeStatus', changeStatus);
  module.exports=routes

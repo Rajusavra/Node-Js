@@ -44,7 +44,6 @@ const registerUser = async (req, res) => {
     });
 
     if (password == conpassword) {
-        console.log("SignUp Successfully");
         return res.redirect("/");
       } else {
         console.log('Password Not Matched');

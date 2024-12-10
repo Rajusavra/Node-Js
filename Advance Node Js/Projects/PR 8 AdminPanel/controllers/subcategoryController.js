@@ -83,9 +83,9 @@ const updateSubCategory = async (req, res) => {
 
 const changeStatus = async (req, res) => {
   try {
-    const status = req.query.status;
     const id = req.query.id;
-    if (status == "active") {
+    const st = req.query.status;
+    if (st == "active") {
       await subcategoryModel.findByIdAndUpdate(id, { status: "deactive" });
       return res.redirect("/subcategory/viewsubcategory");
     } else {
