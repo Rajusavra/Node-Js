@@ -26,7 +26,7 @@
                                     <select name="subcategory" id="subcategory" class="form-select">
                                         <option value="">---select subcategory---</option>
                                         <% subcategory.map((val)=>{ %>
-                                            <option value="<%= val._id %>" <% if(val?.subcategory== exsubcategory?.subcategoryid?.subcategory){%> selected<% }%>>
+                                            <option value="<%= val._id %>" <% if(val?.subcategory == exsubcategory?.subcategoryid?.subcategory){ %> selected <% } %>>
                                                 <%= val.subcategory %>
                                             </option>
                                             <% }) %>
@@ -54,16 +54,13 @@
                     url: `/exsubcategory/getcategory?id=${category}`,
                     success: function (res) {
                         let tbl = "";
-                        if (res.status && res.categorydata.length > 0) {
+                        tbl += `<option value="">---select subcategory---</option>`;
                             res.categorydata.map((val) => {
                                 tbl += `
                                 <option value="${val._id}">
                                   ${val.subcategory}
                                 </option>`;
                             });
-                        } else {
-                            tbl += `<option value="">---select subcategory---</option>`;
-                        }
                         document.getElementById('subcategory').innerHTML = tbl;
                     },
                     error: function (xhr) {

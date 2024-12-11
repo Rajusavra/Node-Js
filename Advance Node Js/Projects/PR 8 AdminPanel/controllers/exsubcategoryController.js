@@ -106,7 +106,7 @@ const getCategory = async (req, res) => {
       return res.status(200).send({
         status: true,
         message: "No category ID provided",
-        categorydata: [],
+        categorydata
       });
     }
   } catch (err) {

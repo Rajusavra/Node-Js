@@ -49,16 +49,17 @@
                     url: `/exsubcategory/getcategory?id=${category}`,
                     success: function (res) {
                         let tbl = "";
-                        if (res.status && res.categorydata.length > 0 ) {   
-                            res.categorydata.map((val) => {
+                        tbl+=`
+                            <option value="">
+                                  ---select subcategory---
+                            </option>
+                        `
+                        res.categorydata.map((subcat) => {
                                 tbl += `
-                                <option value="${val._id}">
-                                  ${val.subcategory}
+                                <option value="${subcat._id}">
+                                  ${subcat.subcategory}
                                 </option>`;
                             });
-                        } else {
-                            tbl += `<option value="">---select subcategory---</option>`;
-                        }
                         document.getElementById('subcategory').innerHTML = tbl;
                     },
                     error: function (xhr) {
