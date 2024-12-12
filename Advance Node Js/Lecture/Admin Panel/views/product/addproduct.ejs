@@ -1,0 +1,98 @@
+<%- include('../header') %>
+    <!-- partial -->
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-9 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Extra SubCatogary form</h4>
+                            <p class="card-description"> Add ExtraSubcategory form layout </p>
+                            <form class="forms-sample d-flex flex-wrap" method="post" action="/product/addproductdata">
+                                <div class="form-group col-md-5 me-3">
+                                    <label for="exampleInputUsername1">Category Name</label>
+                                    <select name="category" onchange="exSubCategoryRecord()" id="category"
+                                        class="form-select">
+                                        <option value="">-----select-category------</option>
+                                        <% category.map((cat)=>{ %>
+                                            <option class="text-dark" value="<%= cat._id %>">
+                                                <%= cat.category %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="exampleInputUsername1">SubCategory Name</label>
+                                    <select name="subcategory" id="subcategory" class="form-select">
+                                        <option value="">---select subcategory---</option>
+                                      </select>
+                                </div>
+                                <div class="form-group col-md-6 me-3">
+                                    <label for="exampleInputUsername1">ExSubCategory Name</label>
+                                    <select name="subcategory" id="exsubcategory" class="form-select">
+                                        <option value="">---select subExsubcategory---</option>
+                                        <% exsubcategory.map((exsub)=>{ %>
+                                            <option class="text-dark" value="<%= exsub._id %>">
+                                                <%= exsub.exsubcategory %>
+                                            </option>
+                                            <% }) %>
+                                      </select>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="exampleInputUsername1">Product Name</label>
+                                    <input type="text" name="product" class="form-control"
+                                        id="exampleInputUsername1" placeholder="Add product">
+                                </div>
+                                <div class="form-group col-md-6 me-3">
+                                    <label for="exampleInputUsername1">Description</label>
+                                    <textarea class="form-control" name="description" placeholder="Add a Description here" id="floatingTextarea"></textarea> 
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="exampleInputUsername1">Price</label>
+                                    <input type="text" name="price" class="form-control"
+                                        id="exampleInputUsername1" placeholder="price">
+                                </div>
+                                <div class="form-group col-md-3 m-0">
+                                    <label for="exampleInputUsername1">Quantity</label>
+                                    <input type="number" name="quantity" class="form-control"
+                                        id="exampleInputUsername1" placeholder="0">
+                                        <button type="submit" class="btn btn-primary my-4">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            const exSubCategoryRecord = () => {
+                let category = document.getElementById('category').value;
+                $.ajax({
+                    type: 'GET',
+                    url: `/product/getcategory?id=${category}`,
+                    success: function (res) {
+                        let tbl = "";
+                        tbl+=`
+                            <option value="">
+                                  ---select subcategory---
+                            </option>
+                        `
+                        res.categorydata.map((subcat) => {
+                                tbl += `
+                                <option value="${subcat._id}">
+                                  ${subcat.subcategory}
+                                </option>`;
+                            });
+                        document.getElementById('subcategory').innerHTML = tbl;
+                    },
+                    error: function (xhr) {
+                        console.error(xhr);
+                        alert("An error occurred while fetching subcategories.");
+                    },
+                });
+            };
+        </script>
+
+        <%- include('../footer') %>
