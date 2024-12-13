@@ -6,7 +6,10 @@ const exsubcategoryModel = require("../models/exsubcategoryModel");
 
 const viewExSubCategory = async (req, res) => {
   try {
-    let exsubcategory = await exsubcategoryModel.find({}).populate('categoryid').populate('subcategoryid')
+    let exsubcategory = await exsubcategoryModel
+      .find({})
+      .populate("categoryid")
+      .populate("subcategoryid");
     return res.render("exsubcategory/viewexsubcategory", {
       exsubcategory: exsubcategory,
     });
@@ -94,27 +97,17 @@ const updateExSubCategory = async (req, res) => {
 
 const getCategory = async (req, res) => {
   try {
-    let id = req.query.id;
-    if (id) {
-      let categoryRecord = await subcategoryModel.find({ categoryid: id });
-      return res.status(200).send({
-        status: true,
-        message: "Record fetched",
-        categorydata: categoryRecord,
-      });
-    } else {
-      return res.status(200).send({
-        status: true,
-        message: "No category ID provided",
-        categorydata
-      });
-    }
-  } catch (err) {
-    console.error(err);
-    return res.status(500).send({
-      status: false,
-      message: "Server error",
+    const id = req.query.id;
+
+    const category = await subcategoryModel.find({ categoryid : id });
+    return res.send({
+      success: true,
+      message: "its Working",
+      category,
     });
+  } catch (err) {
+    console.log(err);
+    return false;
   }
 };
 
@@ -143,5 +136,5 @@ module.exports = {
   editExSubCategory,
   updateExSubCategory,
   getCategory,
-  changeStatus
+  changeStatus,
 };

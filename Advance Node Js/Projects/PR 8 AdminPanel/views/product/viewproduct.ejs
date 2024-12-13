@@ -1,1 +1,77 @@
-<h1>Welcome To View Product Page</h1>
+<%- include('../header') %>
+
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Extra SubCatogery Table</h4>
+                            <p class="card-description"> View All <code>Extra SubCategories</code>
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th> Id </th>
+                                            <th> Category Type </th>
+                                            <th> SubCategory </th>
+                                            <th> ExSubCategory </th>
+                                            <th> Product </th>
+                                            <th> Description </th>
+                                            <th> price </th>
+                                            <th> Quantity </th>
+                                            <th> Action </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% product.map((pro,i)=>{ %>
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= ++i %>
+                                                </th>
+                                                <td class="text-primary">
+                                                    <%= pro?.categoryid?.category %>
+                                                </td>
+                                                <td class="text-info">
+                                                    <%= pro?.subcategoryid?.subcategory %>
+                                                </td>
+                                                <td class="text-danger">
+                                                    <%= pro?.exsubcategoryid?.exsubcategory %>
+                                                </td>
+                                                <td class="text-danger">
+                                                    <%= pro?.product %>
+                                                </td>
+                                                <td class="text-danger">
+                                                    <%= pro?.description %>
+                                                </td>
+                                                <td class="text-danger">
+                                                    <%= pro?.price %>
+                                                </td>
+                                                <td class="text-danger">
+                                                    <%= pro?.quantity %>
+                                                </td>
+                                                <td>
+                                                    <a href="/exsubcategory/deleteexsubcategory?id=<%=exsub.id%>"
+                                                        class="btn btn-danger py-2">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                    <a href="/exsubcategory/editexsubcategory?id=<%=exsub.id%>"
+                                                        class="btn btn-primary py-1 ms-2 "
+                                                        style="font-size: 22px !important;">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../footer') %>
