@@ -6,7 +6,6 @@ const route = express.Router();
 
 const passport = require('passport');
 
-
 route.get('/',signInPage);
 route.post('/checkLogin',passport.authenticate('local', {failureRedirect : '/'}),checkLogin);
 route.get("/dashboard",passport.checkUser,dashboard);
