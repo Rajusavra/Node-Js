@@ -120,7 +120,6 @@ const editProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const { editid, category, subcategory, exsubcategory, product, description, price, quantity } = req.body;
-    console.log(req.body.editid);
     
     if (req.file) {
       const single = await productModel.findById(editid);
@@ -148,7 +147,7 @@ const updateProduct = async (req, res) => {
         description : description ,
         price : price ,
         quantity : quantity ,
-        // image : single.image
+        image : single.image
       });
       return res.redirect("/product/viewproduct");
     }
