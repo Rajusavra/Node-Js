@@ -14,6 +14,10 @@ app.set("view engine", "ejs");
 
 app.use(cookieParser());
 
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 const session = require('express-session');
 const passport = require('passport');
 const passportlocal = require('./config/passportlocal');
@@ -34,10 +38,6 @@ app.use(passport.setUser);
 app.use(express.urlencoded());
 
 app.use('/',require('./routes/indexRoute'));
-
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
-
-app.use('/uploads',express.static(path.join(__dirname,'uploads')));
 
 app.listen(port, (err) => {
     if (err) {

@@ -13,6 +13,10 @@ const productSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'exsubcategory'
     },
+    image: {
+        type: String,
+        required: true
+    },
     product: {
         type: String,
         required: true

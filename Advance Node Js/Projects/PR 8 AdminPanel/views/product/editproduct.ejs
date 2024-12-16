@@ -6,16 +6,17 @@
                 <div class="col-md-9 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Product form</h4>
-                            <p class="card-description"> Add Product form layout </p>
-                            <form class="forms-sample d-flex flex-wrap" method="post" action="/product/addproductdata" enctype="multipart/form-data">
+                            <h4 class="card-title">Edit Product form</h4>
+                            <p class="card-description"> Edit product form layout </p>
+                            <form class="forms-sample d-flex flex-wrap" method="post" action="/product/update" enctype="multipart/form-data">
+                                <input type="hidden" value="<%= product.id %>" name="editid">
                                 <div class="form-group col-md-5 me-3">
                                     <label for="exampleInputUsername1">Category Name</label>
                                     <select name="category" onchange="exSubCategoryRecord()" id="category"
                                         class="form-select">
                                         <option value="">-----select-category------</option>
                                         <% category.map((cat)=> { %>
-                                            <option class="text-dark" value="<%= cat._id %>">
+                                            <option value="<%= cat._id %>" <% if(cat?.category== product?.categoryid?.category){%> selected<% }%>>
                                                 <%= cat.category %>
                                             </option>
                                         <% }) %>
@@ -25,6 +26,11 @@
                                     <label for="exampleInputUsername1">SubCategory Name</label>
                                     <select name="subcategory" id="subcategory" class="form-select">
                                         <option value="">---select subcategory---</option>
+                                        <% subcategory.map((val)=>{ %>
+                                            <option value="<%= val._id %>" <% if(val?.subcategory == product?.subcategoryid?.subcategory){ %> selected <% } %>>
+                                                <%= val.subcategory %>
+                                            </option>
+                                        <% }) %>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6 me-3">
@@ -32,35 +38,40 @@
                                     <select name="exsubcategory" id="exsubcategory" class="form-select">
                                         <option value="">---select Exsubcategory---</option>
                                         <% exsubcategory.map((exsub)=>{ %>
-                                            <option class="text-dark" value="<%= exsub._id %>">
+                                            <option value="<%= exsub._id %>" <% if(exsub?.exsubcategory == product?.exsubcategoryid?.exsubcategory){ %> selected <% } %>>
                                                 <%= exsub.exsubcategory %>
                                             </option>
                                         <% }) %>
                                       </select>
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label for="exampleInputUsername1">Image</label>
-                                    <input type="file" class="form-control" name="image" placeholder="Add Image">
+                                <div class="form-group col-md-3 align-items-center">
+                                    <label class="me-2" for="exampleInputUsername1">Image</label>
+                                    <div class="d-flex">
+                                        <input style="width: 300px !important;" type="file" class="form-control me-3" name="image" placeholder="Add Image">
+                                    <img src="/<%= product.image %>" width="40">
+                                    </div>
                                 </div>
                                 <div class="form-group col-md-5 me-3">
                                     <label for="exampleInputUsername1">Product Name</label>
-                                    <input type="text" name="product" class="form-control"
+                                    <input type="text" name="product" value="<%= product.product %>" class="form-control"
                                         id="exampleInputUsername1" placeholder="Add product">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="exampleInputUsername1">Description</label>
-                                    <textarea class="form-control" name="description" placeholder="Add a Description here" id="floatingTextarea"></textarea> 
+                                    <textarea class="form-control" name="description" placeholder="Add a Description here" id="floatingTextarea">
+                                        <%= product.description %>
+                                    </textarea> 
                                 </div>
                                 <div class="form-group col-md-5 me-3">
                                     <label for="exampleInputUsername1">Price</label>
-                                    <input type="number" name="price" class="form-control"
+                                    <input type="number" name="price" value="<%= product.price %>" class="form-control"
                                         id="exampleInputUsername1" placeholder="price">
                                 </div>
                                 <div class="form-group col-md-3 m-0">
                                     <label for="exampleInputUsername1">Quantity</label>
-                                    <input type="number" name="quantity" class="form-control"
+                                    <input type="number" name="quantity" value="<%= product.quantity %>" class="form-control"
                                         id="exampleInputUsername1" placeholder="0">
-                                        <button type="submit" class="btn btn-primary my-4">Submit</button>
+                                        <button type="submit" class="btn btn-primary my-4">Update data</button>
                                 </div>
                             </form>
                         </div>
@@ -75,18 +86,14 @@
                 let category = document.getElementById('category').value;
                 $.ajax({
                     type: 'GET',
-                    url: `/product/getcategory?id=${category}`,
+                    url: `/exsubcategory/getcategory?id=${category}`,
                     success: function (res) {
                         let tbl = "";
-                        tbl+=`
-                            <option value="">
-                                  ---select subcategory---
-                            </option>
-                        `
-                        res.categorydata.map((subcat) => {
+                        tbl += `<option value="">---select subcategory---</option>`;
+                            res.categorydata.map((val) => {
                                 tbl += `
-                                <option value="${subcat._id}">
-                                  ${subcat.subcategory}
+                                <option value="${val._id}">
+                                  ${val.subcategory}
                                 </option>`;
                             });
                         document.getElementById('subcategory').innerHTML = tbl;
