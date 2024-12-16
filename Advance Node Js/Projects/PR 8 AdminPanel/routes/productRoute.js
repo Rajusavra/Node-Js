@@ -21,13 +21,13 @@ const fileUpload = multer({storage : st}).single('image');
 const passport = require('passport');
 
 
-routes.get('/addproduct',addProductPage);
+routes.get('/addproduct', passport.checkUser ,addProductPage);
 routes.get('/getcategory', getCategory);
 routes.post('/addproductdata',fileUpload,addProductdata);
 routes.get('/viewproduct',viewProducts);
 
 routes.get('/deleteproduct',deleteProduct);
-routes.get('/editproduct',editProduct);
+routes.get('/editproduct', passport.checkUser ,editProduct);
 routes.post('/update',fileUpload,updateProduct)
 
 module.exports = routes ;

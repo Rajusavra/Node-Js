@@ -80,10 +80,11 @@ const editProfilePage = (req,res) => {
 
 const updateProfile = async(req,res) =>{
   try {
-      const {name,editpassword,editemail} =req.body
+      const {name,email,editpassword,editemail} =req.body
       await userModel.findOneAndUpdate({email:editemail},{
-          name:name,
-          password : editpassword,        
+          name : name,
+          email : email,
+          password : editpassword        
       })
       return res.redirect('/profile')
   } catch (err) {
