@@ -1,16 +1,18 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://127.0.0.1/Admin_Panel');
-
-const db = mongoose.connection;
-
-db.once('open',(err)=>{
-    if(err) {
-        console.log(err);
+const connectDB = async () => {
+    try {
+        const connect = await mongoose.connect(
+            `mongodb+srv://savraraju:It4chi@cluster0.lxd5n.mongodb.net/Admin_Panel`
+        );
+        console.log('Connected to MongoDB');
+        
+    } catch (err) {
+        console.error(err);
         return false;
     }
-    console.log('db is connected');
-    
-})
+};
 
-module.exports = db;
+module.exports = connectDB() ;
+
+// mongodb+srv://savraraju:<db_password>@cluster0.lxd5n.mongodb.net/
