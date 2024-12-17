@@ -1,6 +1,6 @@
 const express = require('express');
 
-const {addProductPage,viewProducts,addProductdata,deleteProduct,editProduct,updateProduct,getCategory} = require('../controllers/productControler');
+const {addProductPage,viewProducts,addProductdata,deleteProduct,editProduct,updateProduct,getCategory,getSubCategory} = require('../controllers/productControler');
 
 const routes = express.Router();
 
@@ -23,6 +23,7 @@ const passport = require('passport');
 
 routes.get('/addproduct', passport.checkUser ,addProductPage);
 routes.get('/getcategory', getCategory);
+routes.get('/getsubcategory', getSubCategory);
 routes.post('/addproductdata',fileUpload,addProductdata);
 routes.get('/viewproduct',viewProducts);
 

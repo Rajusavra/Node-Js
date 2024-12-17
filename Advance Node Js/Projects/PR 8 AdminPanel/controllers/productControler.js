@@ -79,6 +79,32 @@ const getCategory = async (req, res) => {
   }
 };
 
+const getSubCategory = async (req, res) => {
+  try {
+    let id = req.query.id;
+    if (id) {
+      let subcategoryRecord = await exsubcategoryModel.find({ subcategoryid: id });
+      return res.status(200).send({
+        status: true,
+        message: "Record fetched",
+        subcategorydata: subcategoryRecord,
+      });
+    } else {
+      return res.status(200).send({
+        status: true,
+        message: "No category ID provided",
+        categorydata
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send({
+      status: false,
+      message: "Server error",
+    });
+  }
+};
+
 const deleteProduct = async (req, res) => {
   try {
     const id = req.query.id;
@@ -163,5 +189,6 @@ module.exports = {
   deleteProduct,
   editProduct,
   updateProduct,
-  getCategory
+  getCategory,
+  getSubCategory
 };
