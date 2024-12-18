@@ -1,0 +1,12 @@
+{
+  "name": "js",
+  "description": "A better `node -p`.",
+  "author": "Marco Aurelio <thecoreh@gmail.com>",
+  "version": "0.1.0",
+  "bin": {
+    "js": "./bin/js"
+  },
+  "dependencies": {
+    "commander": "~1.1.1"
+  }
+}
