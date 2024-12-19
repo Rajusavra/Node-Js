@@ -91,7 +91,7 @@ const updateUser = async (req, res) => {
       return res.status(400).send({
         success: false,
         message: "All Fields Are Required",
-      });
+    });
     } else {
       let upUser = await userModel.findByIdAndUpdate(id, req.body);
       if (upUser) {
