@@ -6,7 +6,7 @@ const {addUser,viewUser,deleteUser,updateUser} = require('../controllers/userCon
 const { verifyToken,Admin } = require('../middleware/Auth');
 
 routes.post('/adduser',addUser);
-routes.get('/viewuser',verifyToken,viewUser);
+routes.get('/viewuser',verifyToken,Admin,viewUser);
 routes.delete('/deleteuser/:id',verifyToken,Admin,deleteUser);
 routes.put('/updateuser/:id',verifyToken,Admin,updateUser);
 

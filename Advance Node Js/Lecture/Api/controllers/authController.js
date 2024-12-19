@@ -17,7 +17,7 @@ const loginUser = async (req,res) => {
                 message : "Plz Enter valid Email And Password",
             });
         }
-        let token = jwt.sign({paylod:user} , 'Sparky' , {expiresIn:"4hr"})
+        let token = await jwt.sign({paylod:user} , 'Sparky' , {expiresIn:"4hr"})
         return res.status(200).send({
             success : true,
             token : token

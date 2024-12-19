@@ -19,7 +19,7 @@ const verifyToken = (req,res,next) => {
                     message : "Enter The valid Token",
                 });
             }
-            req.user = decodeToken.payload ;
+            req.user = decodeToken.paylod ;
             return next();
         });
 
@@ -33,6 +33,9 @@ const verifyToken = (req,res,next) => {
 
 const Admin = async (req,res,next) => {
     try {
+       
+        console.log(req.user);
+        
         if(req.user.role != "admin"){
             return res.status(400).send({
                 success : false,
