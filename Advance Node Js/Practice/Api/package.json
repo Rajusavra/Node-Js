@@ -1,12 +1,8 @@
 {
   "dependencies": {
     "cors": "^2.8.5",
-    "debuger": "^0.0.0",
-    "ejs": "^3.1.10",
     "express": "^4.21.0",
-    "js": "^0.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.11.0",
     "mongoose": "^8.8.2",
     "nodemon": "^3.1.7"
   },
