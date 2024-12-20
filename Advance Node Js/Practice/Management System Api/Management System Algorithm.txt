@@ -1,8 +1,8 @@
 <<<<----------------------------------------- Admin ----------------------------------------->>>>
 
-1. Admin Registration (username, email, phone, password, Image)
+1. Admin Registration (username, email, phone, password, Image)    ===============
 
-2. Admin Login (username or email & password)
+2. Admin Login (username or email & password)    ===============
 
 3. Profile (show own details) (Admin Token)
 
