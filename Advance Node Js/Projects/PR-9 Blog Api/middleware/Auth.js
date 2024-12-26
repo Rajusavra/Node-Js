@@ -32,10 +32,7 @@ const verifyToken = (req,res,next) => {
 }
 
 const Admin = async (req,res,next) => {
-    try {
-       
-        console.log(req.user);
-        
+    try { 
         if(req.user.role != "admin"){
             return res.status(400).send({
                 success : false,

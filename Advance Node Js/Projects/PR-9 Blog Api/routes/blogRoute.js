@@ -2,7 +2,7 @@ const express = require('express');
 
 const routes = express.Router();
 
-const {addBlog,viewBlog} = require('../controllers/blogController')
+const {addBlog,viewBlog,deleteBlog} = require('../controllers/blogController')
 
 const { verifyToken,Admin } = require('../middleware/Auth');
 
@@ -21,6 +21,8 @@ const storage = multer.diskStorage({
 
   routes.post('/addblog',verifyToken,upload,Admin,addBlog);
   routes.get('/viewblog',verifyToken,Admin,viewBlog);
+  routes.delete('/deleteblog/:id',verifyToken,deleteBlog);
+  
 
 
 module.exports = routes ;

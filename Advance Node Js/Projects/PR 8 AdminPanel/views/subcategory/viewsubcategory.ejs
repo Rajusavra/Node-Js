@@ -28,10 +28,10 @@
                                                     <%= ++i %>
                                                 </td>
                                                 <td class="text-primary">
-                                                    <%=subcat.categoryid.category%>
+                                                    <%=subcat?.categoryid?.category%>
                                                 </td>
                                                 <td class="text-info">
-                                                    <%=subcat.subcategory%>
+                                                    <%=subcat?.subcategory%>
                                                 </td>
                                                 <td>
                                                     <a href="/subcategory/deletesubcategory?id=<%=subcat.id%>"
@@ -47,7 +47,7 @@
                                                 <td>
                                                     <a href="/subcategory/changestatus?status=<%= subcat.status %>&id=<%= subcat.id %>"
                                                         class="<% if(subcat.status == `active`) { %> btn btn-info py-2 px-3 <% } else { %> btn btn-warning py-2 px-3 <% } %>">
-                                                            <%= subcat.status %>
+                                                            <%= subcat?.status %>
                                                     </a>
                                                 </td>
                                             </tr>
