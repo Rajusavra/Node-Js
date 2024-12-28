@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOVIE VERSE</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;500;600&display=swap");
+
+    body {
+        font-family: "Rubik", sans-serif;
+        text-align: center;
+        background-color: #000000;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    img {
+        height: 300px;
+        width: 300px;
+        border-radius: 5px;
+    }
+
+    h1,
+    h3,
+    p {
+        color: #edf2f4;
+    }
+
+    a {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 230px;
+        color: red;
+        text-decoration: none;
+    }
+
+    input {
+        background-color: #8d99ae;
+        border: none;
+        padding: 14px;
+        color: #edf2f4;
+        border-radius: 5px;
+        font-weight: 500;
+        font-size: 16px;
+        font-family: "Rubik", sans-serif;
+        margin-bottom: 6px;
+        max-width: 400px;
+    }
+
+    input::placeholder {
+        color: #edf2f4;
+        opacity: 0.5;
+    }
+
+    input:focus {
+        border-top: 2px solid #edf2f4;
+        border-right: 2px solid #edf2f4;
+        outline: none;
+    }
+
+    button {
+        margin-top: 10px;
+        border: none;
+        padding: 14px;
+        cursor: pointer;
+        background-color: #d90429;
+        color: #edf2f4;
+        font-weight: 500;
+        font-size: 16px;
+        font-family: "Rubik", sans-serif;
+        border-radius: 5px;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    button:hover {
+        background-color: #d90429;
+        border-top: 2px solid #edf2f4;
+        border-right: 2px solid #edf2f4;
+    }
+
+    .button {
+        margin-top: 10px;
+        border: none;
+        padding: 14px;
+        cursor: pointer;
+        background-color: #d90429;
+        color: #edf2f4;
+        font-weight: 500;
+        font-size: 16px;
+        font-family: "Rubik", sans-serif;
+        border-radius: 5px;
+        /* width: 100%; */
+        max-width: 400px;
+    }
+
+    .list-group {
+        color: white;
+    }
+
+    .card-title {
+        color: white;
+        font-size: 24px;
+    }
+
+    input:required:valid {
+        border-color: green;
+    }
+
+    input:invalid {
+        border-color: #d90429;
+    }
+
+    input:required:focus:valid {
+        background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg") no-repeat 95% 50% #8d99ae;
+        background-size: 25px;
+    }
+
+    input:focus:invalid {
+        background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50% #8d99ae;
+        background-size: 25px;
+    }
+</style>
+
+<body class="d-flex">
+
+    <form action="">
+
+        <div class="card-group" style="margin: 20px; display: ruby;">
+            <% product.map((val,i)=>{ %>
+                <div class="card" style="width: 18rem; margin: 20px;">
+                    <img src="/<%=val.image %>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%=val.name %>
+                        </h5>
+                        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    </div>
+                    <ul class="list-group list-group-flush" style="padding: 0px;">
+                        <!-- <h4 class="list-group-item"></h4> -->
+                        <h4 class="list-group-item">DESCRIPTION:-<%=val.description %>
+                        </h4>
+                        <h4 class="list-group-item">PRICE:-$<%=val.price %>
+                        </h4>
+                        <h4 class="list-group-item">Quentity:- <%=val.qt %>
+                        </h4>
+                    </ul>
+                    <div class="card-body" style="display: flex;">
+                        <a href="/product/delete?id=<%= val.id%>" class="card-link" style="width: 50%;">Delete</a>
+                        <a href="/product/edit?id=<%= val.id%>" class="card-link" style="width: 50%;">Edit</a>
+                    </div>
+                </div>
+                <% } ) %>
+        </div>
+    </form>
+</body>
+
+</html>
