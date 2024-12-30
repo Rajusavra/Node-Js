@@ -12,11 +12,12 @@ const cors = require('cors')
 
 app.use(cors());
 
+app.use(express.urlencoded());
+
 app.use('/',require('./routes/indexRoute'));
 
 app.use('/uploads',express.static(path.join(__dirname,'uploads')));
 
-app.use(express.urlencoded());
 
 app.listen(port, (err) => {
     if (err) {

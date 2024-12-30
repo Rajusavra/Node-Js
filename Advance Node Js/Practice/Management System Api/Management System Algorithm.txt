@@ -4,9 +4,9 @@
 
 2. Admin Login (username or email & password)    ===============
 
-3. Profile (show own details) (Admin Token)
+3. Profile (show own details) (Admin Token)     ==============
 
-4. Change password (Admin Token)
+4. Change password (Admin Token)    ============
 
 5. Forgot Password (no Token)
 

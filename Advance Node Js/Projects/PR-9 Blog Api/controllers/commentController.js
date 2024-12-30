@@ -1,43 +1,44 @@
 const commentModel = require('../models/commentModel');
-const fs = require('fs');
-
+const blogModel = require('../models/blogModel');
 const addComment = async (req, res) => {
     try {
-        const { title, description } = req.body;
-
-        if (!title || !description) {
-            return res.status(400).send({
+        const blogid = req.query.id;
+        const Blog = await blogModel.findOne({ _id: blogid });
+        console.log(Blog);
+        
+        if (!Blog) {
+            return res.status(404).send({
                 success: false,
-                message: "all Fields Are Required !!!...",
+                messsge: "blog not Found",
             });
         }
-
-        const addPost = await commentModel.create({
+        const { comment } = req.body
+        const commentData = await commentModel.create({
             userid: req.user._id,
-            title: title,
-            description: description
+            blogid: blogid,
+            comment: comment
         });
         return res.status(200).send({
             success: true,
-            message: "Post Added Successfully",
-            addPost
+            messsge: "Comment Added sucessfully",
+            commentData
         });
 
-    } catch (err) {
-        return res.status(400).send({
+    } catch (error) {
+        return res.status(501).send({
             success: false,
-            message: "Error while adding blog",
-        });
+            err: error
+        })
     }
 }
 
 const viewComment = async (req, res) => {
     try {
-        const yourPost = await commentModel.find({ userid: req.user._id }).populate('userid')
+        const yourComment = await commentModel.find({ userid: req.user._id }).populate('userid').populate('blogid');
         return res.status(200).send({
             success: true,
-            message: "Your post is Fatched Successfully",
-            yourPost
+            message: "Your comment is Fatched Successfully",
+            yourComment
         })
     } catch (err) {
         return res.status(400).send({
@@ -50,12 +51,12 @@ const viewComment = async (req, res) => {
 const deleteComment = async (req, res) => {
     try {
         const id = req.params.id;
-        let post = await commentModel.findById(id);
-        let delPost = await commentModel.findByIdAndDelete(id);
+        let comment = await commentModel.findById(id);
+        let delcomment = await commentModel.findByIdAndDelete(id);
         return res.status(200).send({
             success: true,
-            message: 'Post removed Successfully',
-            delPost
+            message: 'comment removed Successfully',
+            delcomment
         });
     }
     catch (err) {

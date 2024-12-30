@@ -1,6 +1,7 @@
 const adminModel = require("../models/adminModel");
 const fs = require("fs");
 const moment = require("moment");
+const jwt = require('jsonwebtoken');
 
 const adminRegister = async (req, res) => {
   try {
@@ -37,7 +38,6 @@ const adminRegister = async (req, res) => {
       createdDate: req.body.createdDate,
       updatedDate: req.body.updatedDate,
     });
-    console.log(req.body);
     return res.status(200).send({
       success: true,
       message: "AdminDetails Inserted Successfullky",
@@ -56,15 +56,25 @@ const adminLogin = async (req, res) => {
     const { email, password } = req.body;
     const admin = await adminModel.findOne({ email: email });
     if (!admin) {
-      return res.status(500).send({
+      return res.status(404).send({
         success: false,
         message: "Admin Not Found !!... Try to Register",
       });
+    } else {
+      if (admin.password != password) {
+        return res.status(400).send({
+          success: false,
+          message: "Wrong Password !!... Try to Login Again",
+        });
+      } else {
+        let token = jwt.sign({ adminToken: admin }, 'Sparky', { expiresIn: '1h' });
+        return res.status(200).send({
+          success: true,
+          message: "Admin Login Successfull",
+          adminToken: token
+        });
+      }
     }
-    return res.status(200).send({
-      success: true,
-      message: "Admin Login Successfull",
-    });
   } catch (err) {
     return res.status(400).send({
       success: false,
@@ -73,7 +83,80 @@ const adminLogin = async (req, res) => {
   }
 };
 
+const adminProfile = (req, res) => {
+  try {
+    let adminToken = req.user;
+    return res.status(200).send({
+      success: true,
+      message: 'This is my profile ||',
+      adminToken
+    });
+  } catch (err) {
+    return res.status(400).send({
+      success: false,
+      message: err,
+    });
+  }
+}
+
+const changePassword = async (req, res) => {
+  try {
+    const adminId = req.user;
+    
+    const { cpass, newpass, conpass } = req.body;
+    
+    if (!cpass || !newpass || !conpass) {
+      return res.status(400).send({
+        success: false,
+        message: 'Current password, new password, and confirm password are required',
+      });
+    }
+    
+    if (newpass !== conpass) {
+      return res.status(400).send({
+        success: false,
+        message: 'New password and confirm password do not match',
+      });
+    }
+    
+    const admin = await adminModel.findOne(adminId);
+    if (!admin) {
+      return res.status(404).send({
+        success: false,
+        message: 'Admin not found',
+      });
+    }
+    
+    if (admin.password !== cpass) {
+      return res.status(400).send({
+        success: false,
+        message: 'Current password is incorrect',
+      });
+    }
+    
+    await adminModel.findOneAndUpdate({ _id: adminId }, {
+      password: newpass
+    });
+
+    return res.status(200).send({
+      success: true,
+      message: 'Password updated successfully',
+      newpass
+    });
+
+  } catch (error) {
+    return res.status(500).send({
+      success: false,
+      message: 'An error occurred while changing the password',
+    });
+  }
+}
+
+
+
 module.exports = {
   adminRegister,
   adminLogin,
+  adminProfile,
+  changePassword
 };
