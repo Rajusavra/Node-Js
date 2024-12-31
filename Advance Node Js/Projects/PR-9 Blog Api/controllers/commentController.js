@@ -3,10 +3,10 @@ const blogModel = require('../models/blogModel');
 const addComment = async (req, res) => {
     try {
         const blogid = req.query.id;
-        const Blog = await blogModel.findOne({ _id: blogid });
-        console.log(Blog);
+        const blog = await blogModel.findOne({ id: blogid });
+        console.log(blog);
         
-        if (!Blog) {
+        if (!blog) {
             return res.status(404).send({
                 success: false,
                 messsge: "blog not Found",
@@ -14,8 +14,7 @@ const addComment = async (req, res) => {
         }
         const { comment } = req.body
         const commentData = await commentModel.create({
-            userid: req.user._id,
-            blogid: blogid,
+            blogid: blog,
             comment: comment
         });
         return res.status(200).send({
@@ -34,23 +33,26 @@ const addComment = async (req, res) => {
 
 const viewComment = async (req, res) => {
     try {
-        const yourComment = await commentModel.find({ userid: req.user._id }).populate('userid').populate('blogid');
+        
+        const yourComment = await commentModel.find({})
+        .populate('userid', 'name email')
+        .populate('blogid', 'title description');
         return res.status(200).send({
             success: true,
-            message: "Your comment is Fatched Successfully",
+            message: "Your comment Fatched Successfully",
             yourComment
         })
     } catch (err) {
         return res.status(400).send({
             success: false,
-            message: 'errrrrr'
+            message: err.message
         });
     }
 }
 
 const deleteComment = async (req, res) => {
     try {
-        const id = req.params.id;
+        const id = req.query.id;
         let comment = await commentModel.findById(id);
         let delcomment = await commentModel.findByIdAndDelete(id);
         return res.status(200).send({
@@ -71,5 +73,5 @@ const deleteComment = async (req, res) => {
 module.exports = {
     addComment,
     viewComment,
-    deleteComment,
+    deleteComment
 }

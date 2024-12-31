@@ -12,7 +12,7 @@ const addBlog = async (req, res) => {
             });
         }
 
-        const addPost = await blogModel.create({
+        const addBlog = await blogModel.create({
             userid: req.user._id,
             title: title,
             description: description,
@@ -20,8 +20,8 @@ const addBlog = async (req, res) => {
         });
         return res.status(200).send({
             success: true,
-            message: "Post Added Successfully",
-            addPost
+            message: "Blog Added Successfully",
+            addBlog
         });
 
     } catch (err) {
@@ -34,33 +34,67 @@ const addBlog = async (req, res) => {
 
 const viewBlog = async (req, res) => {
     try {
-        const yourPost = await blogModel.find({ userid: req.user._id }).populate('userid')
+        const yourBlog = await blogModel.find({ userid: req.user._id }).populate('userid');
+        console.log(req.user._id);
+
         return res.status(200).send({
             success: true,
-            message: "Your post is Fatched Successfully",
-            yourPost
+            message: "Your Blog is Fatched Successfully",
+            yourBlog
         })
     } catch (err) {
         return res.status(400).send({
             success: false,
-            message: 'errrrrr'
+            message: err
         });
     }
 }
 
 const deleteBlog = async (req, res) => {
     try {
-        const id = req.params.id;
-        let post = await blogModel.findById(id);
-        fs.unlinkSync(post.image);
-        let delPost = await blogModel.findByIdAndDelete(id);
+        const id = req.query.id;
+        let Blog = await blogModel.findById(id);
+        fs.unlinkSync(Blog.image);
+        let delBlog = await blogModel.findByIdAndDelete(id);
         return res.status(200).send({
             success: true,
-            message: 'Post removed Successfully',
-            delPost
+            message: 'Blog removed Successfully',
+            delBlog
         });
     }
     catch (err) {
+        return res.status(400).send({
+            success: false,
+            message: err
+        });
+    }
+}
+
+const updateBlog = async (req, res) => {
+    try {
+        const id = req.query.id;
+        const { title, description } = req.body;
+
+        if (!title || !description || !req.file) {
+            return res.status(400).send({
+                success: false,
+                message: "all Fields Are Required !!!...",
+            });
+        }
+        let Blog = await blogModel.findById(id);
+        fs.unlinkSync(Blog.image);
+        const upBlog = await blogModel.findByIdAndUpdate(id, {
+            title: title,
+            description: description,
+            image: req.file.path
+        });
+
+        return res.status(200).send({
+            success: true,
+            message: 'Blog updated Successfully',
+            upBlog
+        });
+    } catch (err) {
         return res.status(400).send({
             success: false,
             message: err
@@ -73,4 +107,5 @@ module.exports = {
     addBlog,
     viewBlog,
     deleteBlog,
+    updateBlog
 }

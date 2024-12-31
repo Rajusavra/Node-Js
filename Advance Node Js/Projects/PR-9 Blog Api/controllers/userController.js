@@ -19,7 +19,7 @@ const viewUser = async (req, res) => {
 
 const addUser = async (req, res) => {
   try {
-    const { name, email, password, city } = req.body;
+    const { name, email, password, city, phone ,role} = req.body;
 
     let dup = await userModel.findOne({ email: email });
     if (dup) {
@@ -27,7 +27,7 @@ const addUser = async (req, res) => {
         message: "User already exists",
       });
     } else {
-      if (!name || !email || !password || !city) {
+      if (!name || !email || !password || !city || !phone || !role) {
         return res.status(400).send({
           success: false,
           message: "All Fields Are Required",
@@ -38,6 +38,8 @@ const addUser = async (req, res) => {
           email: email,
           password: password,
           city: city,
+          phone:phone,
+          role:role
         });
         return res.status(200).send({
           success: true,
@@ -61,7 +63,7 @@ const addUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    let id = req.params.id;
+    let id = req.query.id;
     let delUser = await userModel.findByIdAndDelete(id);
     if (delUser) {
       return res.status(200).send({
@@ -85,9 +87,9 @@ const deleteUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    let id = req.params.id;
-    const { name, email, password, city } = req.body;
-    if (!name || !email || !password || !city) {
+    let id = req.query.id;
+    const { name, email, password, city ,role } = req.body;
+    if (!name || !email || !password || !city || !phone || !role) {
       return res.status(400).send({
         success: false,
         message: "All Fields Are Required",

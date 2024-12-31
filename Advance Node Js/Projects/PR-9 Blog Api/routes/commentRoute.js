@@ -6,6 +6,6 @@ const{addComment,viewComment,deleteComment} = require('../controllers/commentCon
 
 routes.post('/addcomment',addComment);
 routes.get('/viewcomment',viewComment);
-routes.delete('/deletecomment/:id',deleteComment);
+routes.delete('/deletecomment',deleteComment);
 
 module.exports = routes;
