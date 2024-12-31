@@ -118,7 +118,7 @@ const deleteUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     let id = req.query.id;
-    const { name, email, password, city ,role } = req.body;
+    const { name, email, password, city, phone ,role } = req.body;
     if (!name || !email || !password || !city || !phone || !role) {
       return res.status(400).send({
         success: false,
