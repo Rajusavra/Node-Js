@@ -8,7 +8,7 @@ const fs = require("fs");
 // =================  Login Page  ==================== //
 
 module.exports.signInPage = (req, res) => {
-  try {
+  try { 
     if (req.cookies.admin == undefined) {
       return res.render("signIn");
     } else {
