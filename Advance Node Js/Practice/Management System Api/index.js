@@ -10,9 +10,14 @@ const path = require('path');
 
 const cors = require('cors')
 
+const cookieParser = require('cookie-parser');
+
+
 app.use(cors());
 
 app.use(express.urlencoded());
+
+const nodemailer = require('nodemailer');
 
 app.use('/',require('./routes/indexRoute'));
 

@@ -2,6 +2,7 @@ const adminModel = require("../models/adminModel");
 const fs = require("fs");
 const moment = require("moment");
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 
 const checkEmail = async (req, res) => {
     try {
@@ -13,6 +14,8 @@ const checkEmail = async (req, res) => {
                 message: 'Email Not exist'
             });
         }
+        const otp = Math.round(Math.random() * 100000);
+        res.cookie("Otp", otp);
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
             port: 587,
@@ -24,15 +27,42 @@ const checkEmail = async (req, res) => {
         });
         const info = await transporter.sendMail({
             from: 'savraraju49@gmail.com',
-            to: "bar@example.com, baz@example.com", // list of receivers
-            subject: "Hello ✔", // Subject line
-            text: "Hello world?", // plain text body
-            html: "<b>Hello world?</b>", // html body
+            to: email,
+            subject: "Hello 🦍🦍🦍🦍🦍",
+            text: "OTP De de Bhagat",
+            html: `<b>Bhagat No OTP :  ${otp}</b>`,
+        });
+        if (!info) {
+            return res.status(404).send({
+                success: false,
+                message: 'OTP not sent',
+            });
+        }
+        return res.status(200).send({
+            success: true,
+            message: 'OTP sent to your email',
+            emailExist,
+            otp
         });
 
+    } catch (err) {
+        return res.status(400).send({
+            success: false,
+            message: err
+        });
+    }
+}
+
+const checkOtp = async (req,res) => {
+    try {
+        console.log(req.body);
+        let otp = req.headers.cookie;
+        let postOtp = otp.slice(4,otp.length);
+        console.log(postOtp);
+        
         return res.status(200).send({
-            message: "Email is available",
-            emailExist
+            success: true,
+            message: "OTP Page is here"
         });
     } catch (err) {
         return res.status(400).send({
@@ -43,5 +73,6 @@ const checkEmail = async (req, res) => {
 }
 
 module.exports = {
-    checkEmail
+    checkEmail,
+    checkOtp,
 }
