@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 
 let port = 8001;
 
@@ -14,12 +14,9 @@ app.use(cors());
 
 app.use(express.urlencoded());
 
-const nodemailer = require('nodemailer');
-
 app.use('/',require('./routes/indexRoute'));
 
 app.use('/uploads',express.static(path.join(__dirname,'uploads')));
-
 
 app.listen(port, (err) => {
     if (err) {

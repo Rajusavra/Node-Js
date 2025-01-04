@@ -1,0 +1,11 @@
+CREATE Teacher and Student Table.
+
+
+-> ADD/UPDATE/DELETE Student API(name,email,phone,profile image,fees)
+-> ADD/UPDATE/DELETE Teacher API(name,email,phone,profile image,fees)
+-> Student can give rating to their teacher only, but they can not give rating to another teacher.
+-> TeacherList = CREATE API to list those teachers record who has under the 5+ students & those 5 student fees must be greater then 10000. (search with student name & teacher name)
+-> StudentList api with teacher detail - (search with student name & teacher name)
+
+
+NOTE: Use API security as possible as you can. bearer token
