@@ -2,7 +2,7 @@ const express = require('express');
 
 const routes = express.Router();
 
-const { teacherRegister,teacherLogin,removeTeacher,updateTeacher } = require('../controllers/teacherController');
+const { teacherRegister,teacherLogin,removeTeacher,updateTeacher,getTeacherList } = require('../controllers/teacherController');
 const { Auth } = require('../middleware/Security');
 
 const multer = require('multer');
@@ -23,5 +23,6 @@ routes.post('/',fileUpload,teacherRegister);
 routes.post('/login',teacherLogin);
 routes.delete('/delete',Auth,removeTeacher);
 routes.put('/update',fileUpload,Auth,updateTeacher);
+routes.get('/teacherlist',Auth,getTeacherList);
 
 module.exports = routes;

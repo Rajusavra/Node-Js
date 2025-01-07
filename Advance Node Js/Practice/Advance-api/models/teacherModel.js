@@ -1,26 +1,30 @@
 const mongoose = require('mongoose');
 
-const teacherSchema  = mongoose.Schema({
-    name:{
+const teacherSchema = mongoose.Schema({
+    name: {
         type: String,
         required: true
     },
-    email:{
+    email: {
         type: String,
         required: true
     },
-    phone:{
+    phone: {
         type: Number,
         required: true
     },
-    image:{
+    image: {
         type: String,
         required: true
     },
-    fees:{
+    fees: {
         type: Number,
         required: true
     },
+    students: [{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Student'
+    }]
 });
 
 const Teacher = mongoose.model('Teacher', teacherSchema);

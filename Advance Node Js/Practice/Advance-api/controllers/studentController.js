@@ -1,37 +1,38 @@
-const teacherModel = require('../models/teacherModel');
 const studentModel = require('../models/studentModel');
+const teacherModel = require('../models/teacherModel');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const fs = require('fs')
 
-const teacherRegister = async (req, res) => {
+const studentRegister = async (req, res) => {
     try {
 
-        const { name, email, phone, fees } = req.body;
-        if (!name || !email || !phone || !fees || !req.file) {
+        const { name, email, phone, fees, rating } = req.body;
+        if (!name || !email || !phone || !fees || !rating || !req.file) {
             return res.status(500).send({
                 success: false,
                 message: "All filed are required",
             });
         }
-        const existTeacher = await teacherModel.findOne({ email: email });
-        if (!existTeacher) {
-            const teacher = await teacherModel.create({
+        const existStudent = await studentModel.findOne({ email: email });
+        if (!existStudent) {
+            const student = await studentModel.create({
                 name: name,
                 email: email,
                 phone: phone,
                 image: req.file.path,
                 fees: fees,
+                rating: rating,
             });
             return res.status(200).send({
                 success: true,
-                message: 'Teacher registered successfully',
-                teacher
+                message: 'student registered successfully',
+                student
             });
         } else {
             return res.status(500).send({
                 success: false,
-                message: "Faculty Already Exist !!... Try to login",
+                message: "Student Already Exist !!... Try to login",
             });
         }
 
@@ -44,28 +45,28 @@ const teacherRegister = async (req, res) => {
     }
 }
 
-const teacherLogin = async (req, res) => {
+const studentLogin = async (req, res) => {
     try {
         const { email, phone } = req.body;
-        const teacher = await teacherModel.findOne({ email: email });
-        if (!teacher) {
+        const student = await studentModel.findOne({ email: email });
+        if (!student) {
             return res.status(404).send({
                 success: false,
-                message: "teacher Not Found !!... Try to Register",
+                message: "student Not Found !!... Try to Register",
             });
         } else {
-            if (teacher.phone != phone) {
+            if (student.phone != phone) {
                 return res.status(400).send({
                     success: false,
                     message: "Wrong phone !!... Try to Login Again",
                 });
             } else {
-                let token = jwt.sign({ teacherToken: teacher }, 'Sparky', { expiresIn: '1h' });
+                let token = jwt.sign({ studentToken: student }, 'Sparky', { expiresIn: '1h' });
 
                 return res.status(200).send({
                     success: true,
-                    message: "teacher Login Successfull",
-                    teacherToken: token
+                    message: "student Login Successfull",
+                    studentToken: token
                 });
             }
         }
@@ -77,17 +78,17 @@ const teacherLogin = async (req, res) => {
     }
 };
 
-const removeTeacher = async (req, res) => {
+const removeStudent = async (req, res) => {
     try {
         const id = req.query.id;
-        let teacher = await teacherModel.findById(id);
-        fs.unlinkSync(teacher.image);
+        let student = await studentModel.findById(id);
+        fs.unlinkSync(student.image);
 
-        let delTeacher = await teacherModel.findByIdAndDelete(id)
+        let delStudent = await studentModel.findByIdAndDelete(id)
         return res.status(200).send({
             success: true,
-            message: 'Faculty removed Successfully',
-            delTeacher
+            message: 'Student removed Successfully',
+            delStudent
         });
     } catch (err) {
         return res.status(400).send({
@@ -97,36 +98,37 @@ const removeTeacher = async (req, res) => {
     }
 }
 
-const updateTeacher = async (req, res) => {
+const updateStudent = async (req, res) => {
     try {
         const id = req.query.id;
-        const { name, email, phone, fees } = req.body;
+        const { name, email, phone, fees, rating } = req.body;
 
-        if (!name || !email || !phone || !fees || !req.file) {
+        if (!name || !email || !phone || !fees || !rating || !req.file) {
             return res.status(500).send({
                 success: false,
                 message: "All fileds are required",
             });
         }
-        let teacher = await teacherModel.findById(id);
-        if (!teacher) {
+        let student = await studentModel.findById(id);
+        if (!student) {
             return res.status(404).send({
                 success: false,
-                message: "Teacher not found",
+                message: "student not found",
             });
         }
-        fs.unlinkSync(teacher.image);
-        let upTeacher = await teacherModel.findByIdAndUpdate(id, {
+        fs.unlinkSync(student.image);
+        let upStudent = await studentModel.findByIdAndUpdate(id, {
             name: name,
             email: email,
             phone: phone,
             image: req.file.path,
             fees: fees,
+            rating: rating
         });
         return res.status(200).send({
             success: true,
-            message: "faculty Details Updated Successfully",
-            upTeacher,
+            message: "Student Details Updated Successfully",
+            upStudent,
         });
     } catch (err) {
         return res.status(400).send({
@@ -136,22 +138,17 @@ const updateTeacher = async (req, res) => {
     }
 }
 
-const getTeacherList = async (req, res) => {
+const getStudentList = async (req, res) => {
     try {
-        const teachers = await teacherModel.find({}).populate('students');
-
-        const filteredTeachers = teachers.filter((teacher) => {
-            const students = teacher.students.filter((student) => student.fees > 10000);
-            return students.length >= 5;
-        });
-
+        const Students = await studentModel.find({})
+            .populate('teacher', 'name email');
         return res.status(200).send({
             success: true,
-            message: 'Teacher List',
-            filteredTeachers
+            message: "Student List",
+            Students
         });
     } catch (err) {
-        return res.status(400).send({
+        res.status(500).send({
             success: false,
             message: err.message
         });
@@ -159,9 +156,9 @@ const getTeacherList = async (req, res) => {
 };
 
 module.exports = {
-    teacherRegister,
-    teacherLogin,
-    removeTeacher,
-    updateTeacher,
-    getTeacherList
+    studentRegister,
+    studentLogin,
+    removeStudent,
+    updateStudent,
+    getStudentList
 }
