@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View product</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="bg-info-subtle">
+    <div class="container-lg">
+        <nav class="navbar navbar-expand-lg bg-info-subtle my-2 border rounded" data-bs-theme="dark">
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav ms-2 me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="btn btn-light" href="/">Add Product</a>
+                    </li>
+                </ul>
+                <div class="float-end">
+                    <a href="/logout" class="btn btn-sm btn-light me-2"><i
+                            class="fa-solid fa-right-from-bracket"></i></a>
+                </div>
+            </div>
+        </nav>
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-md-12 mt-5">
+                <table class="table table-light table-striped rounded-4 text-center align-baseline overflow-hidden shadow-sm">
+                    <thead class="bg-info">
+                        <tr>
+                            <th class="text-bg-info text-primary-emphasis px-4 py-4">Product ID</th>
+                            <th class="text-bg-info text-info-emphasis px-2 py-4">Name</th>
+                            <th class="text-bg-info text-info-emphasis px-2 py-4">Description</th>
+                            <th class="text-bg-info text-success px-2 py-4">Price</th>
+                            <th class="text-bg-info text-warning px-2 py-4">Quantity</th>
+                            <th class="text-bg-info text-primary-emphasis px-2 py-4">Avatar</th>
+                            <th class="text-bg-info text-danger px-4 py-4">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-info-emphasis">
+
+                        <% product.map((val,i)=> { %>
+                            <tr>
+                                <th class="text-primary-emphasis"><%= ++i %></th>
+                                <td class="text-info"><%= val.name %></td>
+                                <td class="text-info text-truncate" style="max-width: 200px;"><%= val.description %></td>
+                                <td class="text-success"><%= val.price %> $</td>
+                                <td class="text-warning"><%= val.quantity %></td>
+                                <td style="width: 100px;"><img src="/<%=val.image%>" height="70px" width="70px" alt="Avatar" class="rounded-circle border border-info-subtle"></td>
+                                <td>
+                                    <a href="/deleteproduct?id=<%=val.id%>" class="btn btn-sm btn-outline-danger rounded-pill"><i class="fa-regular fa-trash-can"></i></a>
+                                    <a href="/editproduct?id=<%=val.id%>" class="btn btn-sm btn-outline-info rounded-pill"><i class="fa-regular fa-pen-to-square"></i></a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+</html>

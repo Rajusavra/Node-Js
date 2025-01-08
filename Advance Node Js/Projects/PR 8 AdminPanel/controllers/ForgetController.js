@@ -16,10 +16,10 @@ const email = async (req, res) => {
     const otp = Math.floor(Math.random() * 100000);
 
     var transporter = nodemailer.createTransport({
-      service: "gmail",
+      service: 'gmail',
       auth: {
         user: "savraraju49@gmail.com",
-        pass: "jfnd awxx lvsc htos",
+        pass: "vqlbeqqelplwgytc",
       },
     });
 
@@ -77,7 +77,7 @@ const newPassword = async (req, res) => {
     await userModel.findOneAndUpdate({ email: usereamil }, {
       password: newpass
     })
-    
+
     return res.redirect('/')
   } else {
     console.log("confirm password and new password not match");
