@@ -11,7 +11,7 @@ const insertProduct = async (req, res) => {
         const { name, description, price, quantity } = req.body;
         if (!name || !description || !price || !quantity || !req.file) {
             console.log('All Fields Are Required');
-            return res.redirect('/');
+            return res.redirect('/product');
         }
 
         const productData = await productModel.create({
@@ -21,7 +21,7 @@ const insertProduct = async (req, res) => {
             quantity: quantity,
             image: req.file.path
         });
-        return res.redirect('/viewproduct');
+        return res.redirect('/product/viewproduct');
     } catch (err) {
         console.log(err);
         return false;
@@ -48,7 +48,7 @@ const deleteProduct = async (req, res) => {
         fs.unlinkSync(product.image);
         await productModel.findByIdAndDelete(id);
 
-        return res.redirect('/viewproduct');
+        return res.redirect('/product/viewproduct');
 
     } catch (err) {
         console.log(err);
@@ -92,7 +92,7 @@ const updateProduct = async (req, res) => {
                 image: product.image
             });
         }
-        return res.redirect('/viewproduct');
+        return res.redirect('/product/viewproduct');
     } catch (err) {
         console.log(err);
         return false;

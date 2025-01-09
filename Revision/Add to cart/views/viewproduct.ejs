@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav ms-2 me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="btn btn-light" href="/">Add Product</a>
+                        <a class="btn btn-light" href="/product">Add Product</a>
                     </li>
                 </ul>
                 <div class="float-end">
@@ -50,8 +50,8 @@
                                 <td class="text-warning"><%= val.quantity %></td>
                                 <td style="width: 100px;"><img src="/<%=val.image%>" height="70px" width="70px" alt="Avatar" class="rounded-circle border border-info-subtle"></td>
                                 <td>
-                                    <a href="/deleteproduct?id=<%=val.id%>" class="btn btn-sm btn-outline-danger rounded-pill"><i class="fa-regular fa-trash-can"></i></a>
-                                    <a href="/editproduct?id=<%=val.id%>" class="btn btn-sm btn-outline-info rounded-pill"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    <a href="/product/deleteproduct?id=<%=val.id%>" class="btn btn-sm btn-outline-danger rounded-pill"><i class="fa-regular fa-trash-can"></i></a>
+                                    <a href="/product/editproduct?id=<%=val.id%>" class="btn btn-sm btn-outline-info rounded-pill"><i class="fa-regular fa-pen-to-square"></i></a>
                                 </td>
                             </tr>
                         <% }) %>

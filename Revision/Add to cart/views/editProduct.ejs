@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav ms-2 me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="btn btn-light" href="/viewproduct">View Product</a>
+                        <a class="btn btn-light" href="/product/viewproduct">View Product</a>
                     </li>
                 </ul>
                 <div class="float-end">
@@ -26,7 +26,7 @@
         </nav>
         <div class="row d-flex align-items-center justify-content-center">
             <div class="col-md-4">
-                <form class="bg-light-subtle m-4 p-4 border-5 rounded bor" method="post" action="/updateProduct"
+                <form class="bg-light-subtle m-4 p-4 border-5 rounded bor" method="post" action="/product/updateProduct"
                     enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<%= product?.id %>">
                     <div class="mb-3">
