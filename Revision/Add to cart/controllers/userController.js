@@ -52,8 +52,19 @@ const registerUserData = async (req, res) => {
     }
 }
 
+const checkLogin = async (req, res) => {
+    try {
+        return res.redirect('/product');
+        
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+}
+
 module.exports = {
     loginUser,
     registerUser,
-    registerUserData
+    registerUserData,
+    checkLogin
 }

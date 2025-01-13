@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const addProductPage = (req, res) => {
-    res.render('addProduct');
+    return res.render('addProduct');
 }
 
 const insertProduct = async (req, res) => {

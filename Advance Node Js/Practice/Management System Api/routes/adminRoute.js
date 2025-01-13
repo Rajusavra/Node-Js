@@ -18,7 +18,7 @@ const st = multer.diskStorage({
 const fileUpload = multer({storage : st}).single('image');
 const {adminAuth} = require('../middleware/AdminAuth');
 
-const {adminRegister,adminLogin,adminProfile,changePassword} = require('../controllers/adminController');
+const {adminRegister,adminLogin,adminProfile,changePassword,managerRegister} = require('../controllers/adminController');
 const {checkEmail,checkOtp} = require('../controllers/forgetController');
 
 routes.post('/adminregister',fileUpload,adminRegister);
@@ -27,5 +27,7 @@ routes.get('/adminprofile',adminAuth,adminProfile);
 routes.post('/changepassword',adminAuth,changePassword);
 routes.post('/checkemail',checkEmail);
 routes.post('/checkotp',checkOtp);
+
+routes.post('/managerRegister',managerRegister);
 
 module.exports = routes ;

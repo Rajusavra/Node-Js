@@ -152,11 +152,25 @@ const changePassword = async (req, res) => {
   }
 }
 
+const managerRegister = async (req,res) => {
+  try {
+    return res.status(200).send({
+      success: true,
+      message: "manager registered by admin",
+    });
+  } catch (err) {
+    return res.status(500).send({
+      success: false,
+      message: err.message
+    });
+  }
+}
 
 
 module.exports = {
   adminRegister,
   adminLogin,
   adminProfile,
-  changePassword
+  changePassword,
+  managerRegister,
 };

@@ -16,6 +16,7 @@ const checkEmail = async (req, res) => {
         }
         const otp = Math.round(Math.random() * 100000);
         res.cookie("Otp", otp);
+        res.cookie("Email",email);
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
             port: 587,
@@ -55,14 +56,19 @@ const checkEmail = async (req, res) => {
 
 const checkOtp = async (req,res) => {
     try {
-        console.log(req.body);
         let otp = req.headers.cookie;
         let postOtp = otp.slice(4,otp.length);
-        console.log(postOtp);
-        
+        if (req.body.otp !== postOtp) {    
+            return res.status(200).send({
+                success: true,
+                message: "OTP Not match",
+                postOtp
+            });
+        }
         return res.status(200).send({
             success: true,
-            message: "OTP Page is here"
+            message: "OTP match SuccessFully",
+            postOtp
         });
     } catch (err) {
         return res.status(400).send({
