@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap 5 Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+        .material-symbols-outlined-red {
+            font-variation-settings:
+                'FILL' 1,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <span class="image">
+                        <img class="logo ms-4"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png"
+                            alt="Instagram" height="60px">
+                    </span>
+                </li>
+                <li class="nav-link">
+                    <a href="/dashbord">
+                        <i class="fa-solid fa-house icon text-black fw-bold"></i>
+                        <span class="text nav-text text-black fs-6 fw-bold">Home</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="/create">
+                        <i class="fa-regular fa-square-plus text-black fs-6 icon"></i>
+                        <span class="text nav-text text-black fs-6">Create</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="/profile">
+                        <i class="fa-solid fa-user text-black fs-6 icon"></i>
+                        <span class="text nav-text text-black fs-6">Profile</span>
+                    </a>
+                </li>
+                <li class="nav-link mt-4">
+                    <a href="/logout">
+                        <i class="fa-solid fa-right-from-bracket text-black fs-6 icon"></i>
+                        <span class="text nav-text text-black fs-6">Log Out</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+        <main class="content">
+
+            <!-- Code for Showing the Status -->
+            <main>
+                <div class="container">
+                    <div class="col-9">
+                        <div class="statuses">
+                            <div class="status">
+                                <div class="image">
+                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                        alt="img3">
+                                </div>
+                            </div>
+                            <div class="status">
+                                <div class="image">
+                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093221/g2-200x200.jpg"
+                                        alt="img4">
+                                </div>
+                            </div>
+                            <div class="status">
+                                <div class="image">
+                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093241/g3-200x200.png"
+                                        alt="img5">
+                                </div>
+                            </div>
+                            <div class="status">
+                                <div class="image">
+                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093229/g-200x200.png"
+                                        alt="img6">
+                                </div>
+                            </div>
+                            <div class="status">
+                                <div class="image">
+                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093221/g2-200x200.jpg"
+                                        alt="img7">
+                                </div>
+                            </div>
+                            <div class="status">
+                                <div class="image">
+                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                        alt="img8">
+                                </div>
+                            </div>
+                            <div class="status">
+                                <div class="image">
+                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                        alt="img8">
+                                </div>
+                            </div>
+                            <div class="status">
+                                <div class="image">
+                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                        alt="img8">
+                                </div>
+                            </div>
+                            <div class="status">
+                                <div class="image">
+                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                        alt="img8">
+                                </div>
+                            </div>
+                            <div class="status">
+                                <div class="image">
+                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                        alt="img8">
+                                </div>
+                            </div>
+                            <div class="status">
+                                <div class="image">
+                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                        alt="img8">
+                                </div>
+                            </div>
+                            <div class="status">
+                                <div class="image">
+                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                        alt="img8">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Code for viewing the Post -->
+
+                        <% record.map((value)=>{ %>
+                            <div class="card">
+                                <div class="top">
+                                    <div class="userDetails">
+                                        <div class="profilepic">
+                                            <div class="profile_img">
+                                                <div class="image">
+                                                    <img src="./assets/images/user-3.jpeg" alt="img10"> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h3>
+                                            <%= value.userId.name %>
+                                        </h3>
+                                    </div>
+                                    <div>
+                                        <span class="dot">
+
+                                            <label class="dropdown">
+
+                                                <div class="dd-button">
+                                                    <i class="fas fa-ellipsis-h fs-5"></i>
+                                                </div>
+
+                                                <input type="checkbox" class="dd-input" id="test">
+
+                                                <% if(value.userId.id==locals.users.id) { %>
+
+                                                    <ul class="dd-menu">
+                                                        <li><a href="/delteRecord?delid=<%= value.id %>"><i
+                                                                    class="fa-solid fa-trash text-danger fs-5"></i></a>
+                                                        </li>
+                                                        <li class="p-0">
+                                                            <div class="border-bottom"></div>
+                                                        </li>
+                                                        <li><a href="/editRecord?editId=<%= value.id %>"><i
+                                                                    class="fa-solid fa-pen-to-square text-primary fs-5"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                    <% } %>
+
+                                            </label>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="imgBx">
+                                    <img src="<%= value.image %>" alt="post-1" class="cover">
+                                </div>
+                                <div class="bottom">
+                                    <div class="actionBtns">
+                                        <div class="left">
+
+                                            <% if(value.likes.includes(locals.users._id)) { %>
+                                                <a href="/postUnLike/<%= value.id %>">
+                                                    <span class="heart" onclick="addlike()">
+                                                        <span class="material-symbols-outlined-black">
+                                                            <i class="fa-solid fa-heart fs-4 text-danger"></i>
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                                <% } else { %>
+
+                                                    <a href="/postLike/<%= value.id %>">
+                                                        <span class="heart" onclick="addlike()">
+                                                            <span>
+                                                                <i class="fa-regular fa-heart fs-4"></i>
+                                                            </span>
+                                                        </span>
+                                                    </a>
+                                                    <% } %>
+
+                                                        <i class="fa-regular fa-comment fs-4 mx-2"></i>
+
+                                                        <i class="fa-regular fa-paper-plane fs-4"></i>
+                                        </div>
+                                        <div class="right">
+                                            <svg aria-label="Save" class="_8-yf5 " color="#262626" fill="#262626"
+                                                height="24" role="img" viewBox="0 0 48 48" width="24">
+                                                <path d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 29 5.6  
+                                                    47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7  
+                                                    3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4  
+                                                    1.2-.9 1.4-.2.1-.4.1-.6.1zM24 26c.8 0  
+                                                    1.6.3 2.2.9l15.8 16V3H6v39.9l15.8-16c.6-.6  
+                                                    1.4-.9 2.2-.9z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                    </div>
+
+                                    <a href="#">
+                                        <p class="likes">
+                                            <%= value.likes.length %> likes
+                                        </p>
+                                    </a>
+                                    <a href="#">
+                                        <p class="message">
+                                            <h4>
+                                                <%= value.description %>
+                                            </h4>
+                                        </p>
+                                    </a>
+                                    <a href="#">
+                                        <h4 class="comments">View all 25 comments</h4>
+                                    </a>
+                                    <a href="#">
+                                        <h5 class="postTime">9 hours ago</h5>
+                                    </a>
+                                    <div class="addComments">
+                                        <div class="reaction">
+                                            <h3>
+                                                <i class="far fa-smile"></i>
+                                            </h3>
+                                        </div>
+                                        <input type="text" class="text" placeholder="Add a comment...">
+                                        <a href="#">Post</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) %>
+
+                    </div>
+                    <div class="col-3">
+                        <div class="card">
+                            <h4>Suggestions For You</h4>
+                            <div class="top">
+                                <div class="userDetails">
+                                    <div class="profilepic">
+                                        <div class="profile_img">
+                                            <div class="image">
+                                                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093221/g2-200x200.jpg"
+                                                    alt="img12">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3>Aditya Verma<br>
+                                        <span>Follows You</span>
+                                    </h3>
+                                </div>
+                                <div>
+                                    <a href="#" class="follow">follow
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="top">
+                                <div class="userDetails">
+                                    <div class="profilepic">
+                                        <div class="profile_img">
+                                            <div class="image">
+                                                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093229/g-200x200.png"
+                                                    alt="img13">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3>Amit Singh<br>
+                                        <span>Follows You</span>
+                                    </h3>
+                                </div>
+                                <div>
+                                    <a href="#" class="follow">follow
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="top">
+                                <div class="userDetails">
+                                    <div class="profilepic">
+                                        <div class="profile_img">
+                                            <div class="image">
+                                                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093221/g2-200x200.jpg"
+                                                    alt="img14">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3>Piyush Agarwal<br>
+                                        <span>Followed by Keshav Agarwal</span>
+                                    </h3>
+                                </div>
+                                <div>
+                                    <a href="#" class="follow">follow</a>
+                                </div>
+                            </div>
+                            <div class="top">
+                                <div class="userDetails">
+                                    <div class="profilepic">
+                                        <div class="profile_img">
+                                            <div class="image">
+                                                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093229/g-200x200.png"
+                                                    alt="img15">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3>Amit Sharma<br>
+                                        <span>Follows You</span>
+                                    </h3>
+                                </div>
+                                <div>
+                                    <a href="#" class="follow">follow
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="top">
+                                <div class="userDetails">
+                                    <div class="profilepic">
+                                        <div class="profile_img">
+                                            <div class="image">
+                                                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093241/g3-200x200.png"
+                                                    alt="img16" class="cover">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3>Raj Goel<br>
+                                        <span>Followed by Keshav Agarwal</span>
+                                    </h3>
+                                </div>
+                                <div>
+                                    <a href="#" class="follow">follow
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </main>
+
+    </div>
+</body>
+<script src="js/login.js"></script>
+<script>
+    const followButtons = document.querySelectorAll('.follow');
+
+    followButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            if (this.innerHTML === 'follow') {
+                this.innerHTML = 'Unfollow';
+                this.style.color = '#4c3de4';
+            } else {
+                this.innerHTML = 'follow';
+                this.style.color = '';
+            }
+        });
+    });
+</script>
+
+</html>

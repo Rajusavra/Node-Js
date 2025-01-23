@@ -1,0 +1,284 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap");
+
+body {
+    font: 400 14px Roboto, sans-serif;
+    background: #f6f4fc;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+em {
+    font-style: normal;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.layout {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 0 16px;
+    background-color: #f6f4fc;
+    margin: 0 20px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    flex: 1;
+    margin: 5.5em 0;
+    width: 100%;
+    min-width: 260px;
+}
+
+.main-header {
+    background-color: #fefefe;
+    border-radius: 40px;
+    padding: 20px;
+    width: 100%;
+    max-width: 650px;
+}
+
+.main-title {
+    width: 100%;
+}
+
+.main-header .main-title h1 {
+    margin: 30px;
+    font-size: 42px;
+    color: #3ba8d4;
+}
+
+.main-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4em;
+    background-color: #f6f4fc;
+    border-top: 1px solid #b3b3b3;
+}
+
+.footer_sign {
+    position: absolute;
+    top: 50%;
+    right: 1em;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #b3b3b3;
+}
+
+.footer_sign span,
+a {
+    color: #49c1c3;
+    text-decoration: none;
+}
+
+/* .header {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4em;
+    background-color: #f6f4fc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5em;
+    border-bottom: 1px solid #3ba8d4;
+} */
+
+.header-user {
+    font-size: 1.2em;
+    color: #3ba8d4;
+}
+
+.header-user>i {
+    padding-right: 10px;
+}
+
+/* ==== sidebar ==== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -15em;
+    overflow: hidden;
+    transition: all 0.3s ease-in;
+    width: 15em;
+    height: 100%;
+    background: #fefefe;
+    font-size: 1.2em;
+}
+
+.active {
+    color: #3ba8d4;
+    background-color: #f5f8fe;
+    border-right: 2px solid #3ba8d4;
+}
+
+.sidebar:hover,
+.sidebar:focus,
+.header:focus+.sidebar,
+.header:hover+.sidebar {
+    left: 0;
+}
+
+.sidebar ul {
+    position: absolute;
+    top: 4em;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 15em;
+}
+
+.sidebar ul li {
+    width: 100%;
+}
+
+.sidebar-list-item {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 3em;
+    color: #394951;
+}
+
+.sidebar-list-item em {
+    position: absolute;
+    top: 50%;
+    left: 4em;
+    transform: translateY(-50%);
+}
+
+.sidebar-list-item:hover {
+    background: #f5f8fe;
+}
+
+.sidebar-list-item>i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 4em;
+    height: 3em;
+}
+
+.sidebar-list-item>i::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (min-width: 42em) {
+    .content {
+        margin-left: 5em;
+    }
+
+    .sidebar {
+        width: 4em;
+        left: 0;
+    }
+
+    .sidebar:hover,
+    .sidebar:focus,
+    .header:hover+.sidebar,
+    .header:focus+.sidebar {
+        width: 15em;
+    }
+}
+
+@media (min-width: 68em) {
+    .content {
+        margin-left: 18em;
+    }
+
+    .sidebar {
+        width: 15em;
+    }
+}
+
+
+.sidebar li a {
+    height: 50px;
+    /* background-color: red; */
+    margin-top: 10px;
+    margin-left: 15px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar a {
+    display: flex;
+}
+
+.sidebar li .icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    font-size: 20px;
+}
+
+.sidebar li .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    font-size: 20px;
+}
+
+.sidebar li .icons,
+.sidebar li .text {
+    color: var(--text-color);
+    transition: var(--trans-03);
+}
+
+
+.card {
+    margin-top: 100px;
+    width: 370px !important;
+    height: 400px !important;
+    border: 3px groove #d6249f;
+}
+
+.create {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+form input {
+    margin-top: 20px;
+}
+
+.card button {
+    width: 150px;
+    text-align: center;
+    margin: 0 auto;
+}
