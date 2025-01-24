@@ -476,8 +476,8 @@ main .container {
 }
 
 .statuses::-webkit-scrollbar {
-    width: 3px; 
-    height: 4px; 
+    width: 3px;
+    height: 4px;
 }
 
 .statuses::-webkit-scrollbar-thumb {

@@ -72,73 +72,73 @@
                         <div class="statuses">
                             <div class="status">
                                 <div class="image">
-                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                    <img src="https://i.pinimg.com/736x/90/6d/7f/906d7fea67506128da092e27928d6756.jpg"
                                         alt="img3">
                                 </div>
                             </div>
                             <div class="status">
                                 <div class="image">
-                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093221/g2-200x200.jpg"
+                                    <img src="https://i.pinimg.com/736x/66/40/9e/66409e7888da2ce088890a2038914619.jpg"
                                         alt="img4">
                                 </div>
                             </div>
                             <div class="status">
                                 <div class="image">
-                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093241/g3-200x200.png"
+                                    <img src="https://i.pinimg.com/736x/67/f2/3c/67f23cd05762f9a27525f60beca242a1.jpg"
                                         alt="img5">
                                 </div>
                             </div>
                             <div class="status">
                                 <div class="image">
-                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093229/g-200x200.png"
+                                    <img src="https://i.pinimg.com/736x/53/c7/d6/53c7d667a8a2ba409f84adf1a8544163.jpg"
                                         alt="img6">
                                 </div>
                             </div>
                             <div class="status">
                                 <div class="image">
-                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093221/g2-200x200.jpg"
+                                    <img src="https://i.pinimg.com/736x/4f/f2/dc/4ff2dc92fe12d9db4fbb24847a1d75d7.jpg"
                                         alt="img7">
                                 </div>
                             </div>
                             <div class="status">
                                 <div class="image">
-                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                    <img src="https://i.pinimg.com/736x/68/b5/93/68b593d2cea9b66084a4e572cf33e089.jpg"
                                         alt="img8">
                                 </div>
                             </div>
                             <div class="status">
                                 <div class="image">
-                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                    <img src="https://i.pinimg.com/736x/1a/20/9a/1a209a164e42bfcfea8867de52b073cf.jpg"
                                         alt="img8">
                                 </div>
                             </div>
                             <div class="status">
                                 <div class="image">
-                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                    <img src="https://i.pinimg.com/736x/09/3c/48/093c4838360d6d06501e98fdc32f4648.jpg"
                                         alt="img8">
                                 </div>
                             </div>
                             <div class="status">
                                 <div class="image">
-                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                    <img src="https://i.pinimg.com/736x/0a/0f/49/0a0f49821fd27be2068bf948bf89030c.jpg"
                                         alt="img8">
                                 </div>
                             </div>
                             <div class="status">
                                 <div class="image">
-                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                    <img src="https://i.pinimg.com/736x/14/0d/a6/140da617590a568a032f1aa4ede25f35.jpg"
                                         alt="img8">
                                 </div>
                             </div>
                             <div class="status">
                                 <div class="image">
-                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                    <img src="https://i.pinimg.com/736x/4f/0d/99/4f0d992d1eb1c772c82d4903c042eab0.jpg"
                                         alt="img8">
                                 </div>
                             </div>
                             <div class="status">
                                 <div class="image">
-                                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220604085434/GeeksForGeeks-300x243.png"
+                                    <img src="https://i.pinimg.com/736x/f4/e7/b5/f4e7b50f5366cd1c8f9b1a84bc15e1e4.jpg"
                                         alt="img8">
                                 </div>
                             </div>
@@ -153,12 +153,13 @@
                                         <div class="profilepic">
                                             <div class="profile_img">
                                                 <div class="image">
-                                                    <img src="./assets/images/user-3.jpeg" alt="img10"> 
+                                                    <img src="https://i.pinimg.com/736x/90/6d/7f/906d7fea67506128da092e27928d6756.jpg"
+                                                        alt="img10">
                                                 </div>
                                             </div>
                                         </div>
                                         <h3>
-                                            <%= value.userId.name %>
+                                            <%= value?.userId?.name %>
                                         </h3>
                                     </div>
                                     <div>
@@ -172,7 +173,7 @@
 
                                                 <input type="checkbox" class="dd-input" id="test">
 
-                                                <% if(value.userId.id==locals.users.id) { %>
+                                                <% if(value?.userId?.id==locals?.users?.id) { %>
 
                                                     <ul class="dd-menu">
                                                         <li><a href="/delteRecord?delid=<%= value.id %>"><i
@@ -198,7 +199,7 @@
                                     <div class="actionBtns">
                                         <div class="left">
 
-                                            <% if(value.likes.includes(locals.users._id)) { %>
+                                            <% if(value?.likes?.includes(locals?.users?._id)) { %>
                                                 <a href="/postUnLike/<%= value.id %>">
                                                     <span class="heart" onclick="addlike()">
                                                         <span class="material-symbols-outlined-black">
@@ -237,13 +238,13 @@
 
                                     <a href="#">
                                         <p class="likes">
-                                            <%= value.likes.length %> likes
+                                            <%= value?.likes?.length %> likes
                                         </p>
                                     </a>
                                     <a href="#">
                                         <p class="message">
                                             <h4>
-                                                <%= value.description %>
+                                                <%= value?.description %>
                                             </h4>
                                         </p>
                                     </a>
@@ -275,7 +276,7 @@
                                     <div class="profilepic">
                                         <div class="profile_img">
                                             <div class="image">
-                                                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093221/g2-200x200.jpg"
+                                                <img src="https://i.pinimg.com/736x/d9/bb/26/d9bb267dedf3fa5acf4886e91062e446.jpg"
                                                     alt="img12">
                                             </div>
                                         </div>
@@ -313,7 +314,7 @@
                                     <div class="profilepic">
                                         <div class="profile_img">
                                             <div class="image">
-                                                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093221/g2-200x200.jpg"
+                                                <img src="https://i.pinimg.com/736x/39/35/e7/3935e7aacf2c99ee5bd138c9f268bba8.jpg"
                                                     alt="img14">
                                             </div>
                                         </div>
@@ -331,7 +332,7 @@
                                     <div class="profilepic">
                                         <div class="profile_img">
                                             <div class="image">
-                                                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093229/g-200x200.png"
+                                                <img src="https://i.pinimg.com/736x/6f/a8/78/6fa878cc5317aaa4c444b33f747d0470.jpg"
                                                     alt="img15">
                                             </div>
                                         </div>
@@ -350,7 +351,7 @@
                                     <div class="profilepic">
                                         <div class="profile_img">
                                             <div class="image">
-                                                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220609093241/g3-200x200.png"
+                                                <img src="https://i.pinimg.com/736x/a1/da/32/a1da324c480a45ce9d632870e3f3bcfd.jpg"
                                                     alt="img16" class="cover">
                                             </div>
                                         </div>
