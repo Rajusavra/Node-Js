@@ -1,72 +1,79 @@
 const Teacher = require('../models/teacherModel');
-const Student = require('../models/studentModel');
-const bcrypt = require('bcryptjs');
+const Student = require('../models/teacherModel');
+const fileUpload = require('../middlewares/upload');
+const jwt = require("jsonwebtoken");
 
-const teacherRegister = async (req, res) => {
+exports.teacherRegister = async (req, res) => {
+  try {
+    const { name, email, phone, fees } = req.body;
+    const profileImage = req.file ? req.file.path : null;
+
+    const teacher = await Teacher.create({
+      name,
+      email,
+      phone,
+      profileImage,
+      fees,
+    });
+
+    const token = jwt.sign(
+      { id: teacher._id, email: teacher.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" }
+    );
+
+    res.status(201).json({ success: true, data: teacher, token });
+  } catch (err) {
+    res.status(400).json({ success: false, error: err.message });
+  }
+};
+
+
+exports.updateTeacher = async (req, res) => {
     try {
-        const { name, email, phone, salary } = req.body;
-        const image = req.file.path;
+        const { id } = req.params;
+        const { name, email, phone, fees } = req.body;
+        const profileImage = req.file ? req.file.path : null;
 
-        const teacher = new Teacher({ name, email, phone, image, salary });
-        await teacher.save();
+        const teacher = await Teacher.findByIdAndUpdate(
+            id,
+            { name, email, phone, profileImage, fees },
+            { new: true }
+        );
 
-        res.status(201).send({ success: true, message: 'Teacher registered successfully.', teacher });
+        res.status(200).json({ success: true, data: teacher });
     } catch (err) {
-        res.status(500).send({ success: false, message: err.message });
+        res.status(400).json({ success: false, error: err.message });
     }
 };
 
-const teacherLogin = async (req, res) => {
+exports.removeTeacher = async (req, res) => {
     try {
-        const { email, password } = req.body;
-        const teacher = await Teacher.findOne({ email });
-
-        if (!teacher || !(await bcrypt.compare(password, teacher.password))) {
-            return res.status(400).send({ success: false, message: 'Invalid email or password.' });
-        }
-
-        const token = jwt.sign({ id: teacher._id, role: 'teacher' }, "sparky", { expiresIn: '1h' });
-        res.status(200).send({ success: true, token });
+        const { id } = req.params;
+        await Teacher.findByIdAndDelete(id);
+        res.status(200).json({ success: true, message: 'Teacher deleted' });
     } catch (err) {
-        res.status(500).send({ success: false, message: err.message });
+        res.status(400).json({ success: false, error: err.message });
     }
 };
 
-const removeTeacher = async (req, res) => {
+exports.getTeacherList = async (req, res) => {
     try {
-        const teacher = await Teacher.findByIdAndDelete(req.user.id);
-        if (!teacher) {
-            return res.status(404).send({ success: false, message: 'Teacher not found.' });
-        }
+        const { studentName, teacherName } = req.query;
 
-        // Remove teacher reference from students
-        await Student.updateMany({ teacher: teacher._id }, { $unset: { teacher: 1 } });
+        const teachers = await Teacher.find({
+            name: { $regex: teacherName || '', $options: 'i' },
+        }).populate({
+            path: 'students',
+            match: { name: { $regex: studentName || '', $options: 'i' }, fees: { $gt: 10000 } },
+        });
 
-        res.status(200).send({ success: true, message: 'Teacher deleted successfully.' });
+        const filteredTeachers = teachers.filter(
+            (teacher) => teacher.students && teacher.students.length >= 5
+        );
+
+        res.status(200).json({ success: true, data: filteredTeachers });
     } catch (err) {
-        res.status(500).send({ success: false, message: err.message });
+        res.status(400).json({ success: false, error: err.message });
     }
 };
-
-const updateTeacher = async (req, res) => {
-    try {
-        const updates = req.body;
-        if (req.file) updates.image = req.file.path;
-
-        const teacher = await Teacher.findByIdAndUpdate(req.user.id, updates, { new: true });
-        res.status(200).send({ success: true, message: 'Teacher updated successfully.', teacher });
-    } catch (err) {
-        res.status(500).send({ success: false, message: err.message });
-    }
-};
-
-const getTeacherList = async (req, res) => {
-    try {
-        const teachers = await Teacher.find({}).populate('students', 'name email');
-        res.status(200).send({ success: true, message: 'Teacher List', teachers });
-    } catch (err) {
-        res.status(500).send({ success: false, message: err.message });
-    }
-};
-
-module.exports = { teacherRegister, teacherLogin, removeTeacher, updateTeacher, getTeacherList };

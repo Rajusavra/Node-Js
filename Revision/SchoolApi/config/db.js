@@ -3,14 +3,13 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
     try {
         const connect = await mongoose.connect(
-            `mongodb+srv://savraraju:It4chi@cluster0.lxd5n.mongodb.net/School_Api`
+            `${process.env.DB_URL}`
         );
-        console.log('Connected to MongoDB');
-        
+        console.log('Connected To MOngoDB');
     } catch (err) {
-        console.error(err);
+        console.log(err);
         return false;
     }
-};
+}
 
-module.exports = connectDB() ;
+module.exports = connectDB;

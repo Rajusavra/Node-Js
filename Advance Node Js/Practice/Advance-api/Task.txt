@@ -7,5 +7,4 @@ CREATE Teacher and Student Table.
 -> TeacherList = CREATE API to list those teachers record who has under the 5+ students & those 5 student fees must be greater then 10000. (search with student name & teacher name)
 -> StudentList api with teacher detail - (search with student name & teacher name)
 
-
 NOTE: Use API security as possible as you can. bearer token

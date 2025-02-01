@@ -1,8 +1,8 @@
-const express = require("express");
+const express = require('express');
 
 const routes = express.Router();
 
-routes.use('/',require('./teacherRourte'));
-routes.use('/student',require('./studentRoute'));
+routes.use('/student', require('./studentRoute'));
+routes.use('/teacher', require('./teacherRoute'));
 
 module.exports = routes;

@@ -1,30 +1,23 @@
 const express = require('express');
+const app = express();
 
-let port = 8001;
+const dotenv = require('dotenv');
+dotenv.config();
 
-let app = express();
+const PORT = process.env.PORT;
 
 const db = require('./config/db');
-
-const path = require('path');
-
-const cors = require('cors')
-
-app.use(cors());
+db();
 
 app.use(express.json());
-
-app.use(express.urlencoded());
+app.use('/uploads', express.static('uploads'));
 
 app.use('/',require('./routes/indexRoute'));
 
-app.use('/uploads',express.static(path.join(__dirname,'uploads')));
-
-app.listen(port, (err) => {
+app.listen(PORT, (err) => {
     if (err) {
         console.log(err);
         return false;
     }
-    console.log(` Server Running on : ${port} `);
-
+    console.log(`Server Start On ${PORT}`);
 });
