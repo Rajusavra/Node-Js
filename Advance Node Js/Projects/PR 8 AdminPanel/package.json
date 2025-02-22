@@ -1,4 +1,10 @@
 {
+  "name": "pr-8-adminpanel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "debuger": "^0.0.0",

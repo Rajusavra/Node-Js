@@ -1,0 +1,158 @@
+<%- layout('boilerplate') %>
+
+  <div class="homepage">
+    <header class="header">
+      <div class="header-contents">
+        <a href="/">
+          <h1 class="greet-user">
+            Hello, <br />
+            <span>
+              <%= user.firstName%>
+            </span>
+            
+          </h1>
+        </a>
+        <form class="search-form" action="/<%= user.username %>/search" method="GET">
+          <input class="search-input" type="text" name="tag" id="tag" placeholder="Search..." required />
+          <button class="search-btn">
+            <div class="search-icon">
+              <i class="fas fa-search"></i>
+            </div>
+          </button>
+        </form>
+      </div>
+    </header>
+  
+    <div class="expense-balance-container">
+      <div class="balance">
+        <p>Balance</p>
+        <h3>&#8377; <%= user.balance %>
+        </h3>
+      </div>
+  
+      <div class="total-expense">
+        <p>Total expense</p>
+        <h3>
+          &#8377; <%= user.totalExpense %> <span>
+              <%= tag ? `(${tag})` : '' %>
+            </span>
+        </h3>
+      </div>
+    </div>
+  
+    <% for(expense of user.expenses.reverse()) { %>
+      <div class="expense">
+        <div class="left-part">
+          <h3>
+            <%= expense.name %>
+          </h3>
+          <p>
+            <%= expense.date.toDateString() %>
+          </p>
+        </div>
+        <div class="right-part">
+          <p>&#8377;<%= expense.amount %>
+          </p>
+          <form action="/expense/<%= expense.id %>?_method=DELETE" method="POST">
+            <button class="delete-btn"><i class="fas fa-trash"></i></button>
+          </form>
+        </div>
+      </div>
+      <% } %>
+  </div>
+
+
+
+      <nav class="navbar">
+        <div class="links">
+          <a href="/">
+            <img src="images/home.svg" alt="home icon" />
+          </a>
+          <div class="add-expense">
+            <img src="images/plus-circle.svg" alt="add icon" />
+          </div>
+          <div class="user">
+            <img src="images/user.svg" alt="user icon" />
+          </div>
+        </div>
+      </nav>
+
+      <div class="overlay"></div>
+
+      <form class="expense-form" action="/expense" method="POST">
+        <div class="form-input">
+          <label for="name">Spent On</label>
+          <input type="text" name="name" id="name" autofocus autocomplete="off" required />
+        </div>
+        <div class="form-input">
+          <label for="amount">Amount</label>
+          <input type="number" name="amount" id="amount" min="0" autocomplete="off" required />
+        </div>
+        <div class="form-input">
+          <label for="tags">Tags</label>
+          <input type="text" name="tags" id="tags" autocomplete="off" required />
+        </div>
+
+        <button class="add-btn"><img src="images/check-circle.svg" alt="" /></button>
+      </form>
+
+
+      <div class="user-profile">
+
+        <div class="user-profile-contents">
+          <div class="back-button">
+            <img src="/images/arrow-left.svg" alt="left arrow">
+          </div>
+          <a class="logout" href="/logout">Logout</a>
+  
+          <div class="user-profile-img">
+            <img src="/images/profile.png" alt="user profile">
+          </div>
+  
+          <div class="expense-balance-container">
+            <div class="balance">
+              <p>Balance</p>
+              <h3>&#8377; <%= user.balance %>
+              </h3>
+            </div>
+        
+            <div class="total-expense">
+              <p>Total expense</p>
+              <h3>
+                &#8377; <%= user.totalExpense %> <span>
+                    <%= tag ? `(${tag})` : '' %>
+                  </span>
+              </h3>
+            </div>
+          </div>
+  
+          <div class="user-details">
+            <div class="user-detail">
+              <p>Name</p>
+              <h3>
+                <%= user.name %>
+              </h3>
+              </h2>
+            </div>
+            <div class="user-detail">
+              <p>Username</p>
+              <h3>
+                <%= user.username %>
+              </h3>
+              </h2>
+            </div>
+            <div class="user-detail">
+              <p>Email</p>
+              <h3>
+                <%= user.email %>
+              </h3>
+              </h2>
+            </div>
+            
+          </div>
+        </div>
+
+        
+      </div>
+
+      <script src="/js/index.js"></script>

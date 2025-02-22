@@ -1,0 +1,39 @@
+<%- layout('boilerplate') %>
+
+<div class="register-title">
+  <div class="register-content">
+    <h1>Register</h1>
+    <p>And start tracking your expenses!</p>
+  </div>
+</div>
+<div class="register-form">
+  <form action="/register" method="POST">
+    <div class="form-input">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" required />
+    </div>
+    <div class="form-input">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        required
+        style="text-transform: lowercase"
+      />
+    </div>
+    <div class="form-input">
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" autocomplete="off" required />
+    </div>
+    <div class="form-input">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" autocomplete="off" required />
+    </div>
+
+    <button class="register-btn">Register</button>
+  </form>
+  <p class="love">
+    Made with <span class="heart">❤</span> by <a href="https://anuragsinghbam.com/" target="_blank"><b>Raju Savra</b></a>
+  </p>
+</div>

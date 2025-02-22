@@ -1,0 +1,14 @@
+<% if(error.length) { %>
+  <div class="error">
+    <%= error %>
+    <div class="cross-icon"><span>&times;</span></div>
+  </div>
+  <script>
+    const error = document.querySelector('.error')
+    const crossIcon = document.querySelector('.cross-icon')
+  
+    crossIcon.addEventListener('click', (e) => {
+      error.remove()
+    })
+  </script>    
+  <% } %>
